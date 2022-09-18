@@ -26,7 +26,7 @@ disp("... done")
 % Generates labels
 disp("Generating labels...")
 labels_data = generate_labels(airports_data, poses_data, calibrationData, basename, offset);
-save(preDatasetFolder + "/labels_data_" + range + ".mat");
+save(preDatasetFolder + "/labels_data_" + range + ".mat", "labels_data");
 disp("... done")
 
 % Generates pdf images
