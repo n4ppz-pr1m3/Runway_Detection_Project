@@ -84,4 +84,4 @@ for i=1:numel(airports)
         warning("Unable to recover runway data for " + airport)
     end   
 end
-save("./Debug/runwayData.mat", "runwayData")
+save("runwayData.mat", "runwayData")
