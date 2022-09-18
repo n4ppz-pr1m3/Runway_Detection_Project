@@ -2,7 +2,7 @@
 
 % TO DO : UPDATE DOC
 
-function detect_runway_v2(runwayData, calibrationData, mode)
+function detect_runway(runwayData, calibrationData, mode)
 
 if ~exist("mode", "var")
     mode = "manual";
