@@ -1,5 +1,5 @@
 function [poses, names] = coord2poses(...
-    coordinates1, coordinates2, coordinates3, coordinatesType, origin)
+    coordinatesType, coordinates1, coordinates2, coordinates3, origin)
 
 % Compute poses of an object based on its locations expressed in
 % the specified coordinates system w.r.t. the specified origin.
