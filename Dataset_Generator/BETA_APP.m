@@ -5,7 +5,7 @@ load("./Calibration/Intrinsic/calibrationIntrinsic.mat")
 
 load("runwayData.mat");
 
-detect_runway_v2(runwayData, calibrationIntrinsic, 'manual')
+detect_runway(runwayData, calibrationIntrinsic, 'manual')
 
 %% Zhang estimation
 clc; clear; close all;
@@ -16,4 +16,4 @@ intrinsicMatrix = calibrationZhang.intrinsicMatrix;
 
 load("runwayData.mat");
 
-detect_runway_v2(runwayData, intrinsicMatrix, 'manual')
+detect_runway(runwayData, intrinsicMatrix, 'manual')
