@@ -8,10 +8,6 @@ if ~exist("mode", "var")
     mode = "manual";
 end
 
-intrinsicMatrix = calibrationData.intrinsicMatrix;
-cropValue = calibrationData.cropValue;
-dpi = calibrationData.dpi;
-
 % Main app
 fig = uifigure;
 fig.WindowState = 'maximized';
@@ -64,9 +60,8 @@ if mode == "manual"
         "Text", "Render", ...
         "Position", [405, 225, 60, 25], ...
         "ButtonPushedFcn", @(renderBtn, event) render(fig, fig2, g, ...
-        runwayData.(airportBtn.Value), intrinsicMatrix, ...
-        string(airportBtn.Value), [airportBtn, labelBtn, renderBtn],...
-        cropValue, dpi));
+        runwayData.(airportBtn.Value), calibrationData, ...
+        string(airportBtn.Value), [airportBtn, labelBtn, renderBtn]));
     
     disp("Select an airport with the dropdown button then press " + renderBtn.Text);
 
@@ -75,7 +70,7 @@ elseif mode == "auto"
         for i=1:numel(airports)
             airport = airports(i);
             update(g, runwayData.(airport), airport);
-            render(fig, fig2, g, runwayData.(airport), intrinsicMatrix, airport, []);
+            render(fig, fig2, g, runwayData.(airport), calibrationData, airport, []);
         end
         close(fig);
     else
@@ -113,7 +108,7 @@ end
 
 end
 
-function render(fig, fig2, g, localData, intrinsicMatrix, newAirport, uiButtons, cropValue, dpi)
+function render(fig, fig2, g, localData, calibrationData, newAirport, uiButtons)
 
 % Renders labelled image
 
@@ -124,6 +119,8 @@ persistent dLTP
 %nVarargin = nargin + nargin("render") + 1;
 
 % Image generation
+dpi = calibrationData.dpi;
+cropValue = calibrationData.cropValue;
 cmd = "convert -density " + string(dpi) + " -depth 8 -quality 100 -gravity South -chop 0x" + string(cropValue) + " tmp.pdf tmp.png";
 
 % Mode
@@ -224,6 +221,10 @@ allBorderPoints = zeros(2, 4*nRunways);
 bbox = zeros(2, 4*nRunways);
 allLTP1 = zeros(2, nRunways);
 allLTP2 = zeros(2, nRunways);
+
+% Intrinsic matrix
+intrinsicMatrix = calibrationData.intrinsicMatrix;
+
 for i=1:nRunways
     % Camera matrix
     cameraMatrix = intrinsicMatrix * z_extrinsic_matrix(...
