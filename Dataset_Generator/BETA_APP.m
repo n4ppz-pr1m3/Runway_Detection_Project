@@ -1,19 +1,19 @@
 %% Intrinsic estimation
 clc; clear; close all;
 
-load("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat")
+load("./Calibration/Intrinsic/calibrationIntrinsic.mat")
 
-load("./Debug/runwayData.mat");
+load("runwayData.mat");
 
 detect_runway_v2(runwayData, calibrationIntrinsic, 'manual')
 
 %% Zhang estimation
 clc; clear; close all;
 
-load("./Calibration/Zhang/Calibration_Data/calibrationZhang.mat")
+load("./Calibration/Zhang/calibrationZhang.mat")
 intrinsicMatrix = calibrationZhang.intrinsicMatrix;
 %intrinsicMatrix = calibrationZhang.intrinsicMatrixMatlab;
 
-load("./Debug/runwayData.mat");
+load("runwayData.mat");
 
 detect_runway_v2(runwayData, intrinsicMatrix, 'manual')
