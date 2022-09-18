@@ -1,6 +1,6 @@
-function generate_pdf_images(poses_data, labels_data, pdfImagesFolder)
+function generate_pdf_images(poses_data, labels_data, pdfImagesFolder, check_dir)
 
-if ~mkdir(".", pdfImagesFolder)
+if check_dir && ~mkdir(".", pdfImagesFolder)
     error("Unable to create " + pdfImagesFolder);
 end
 
