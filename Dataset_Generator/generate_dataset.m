@@ -7,18 +7,18 @@ function generate_dataset(full_airports_data,...
 
 % Pre dataset
 tic                               
-disp("Generating main dataset..." + newline)                      
+disp("Generating pre-dataset..." + newline)                      
 [dataset_size, full_labels_data] = generate_heterogenous_predataset(full_airports_data,...
                                                         full_camera_locations,...
                                                         full_calibration_data,...
                                                         preDatasetFolder, pdfImagesFolder,...
                                                         basename);
-disp("Main dataset done. " + string(dataset_size) + " images generated.");
+disp("Pre-dataset done. " + string(dataset_size) + " pdf images generated.");
 toc
 
 % Conversion to PASCAL VOC
 tic
-disp(newline + "Converting dataset to PASCAL VOC...");
+disp(newline + "Converting pre-dataset to PASCAL VOC...");
 to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
                 imagesFolder, annotationsFolder, masksFolder)
 disp("Conversion done");
