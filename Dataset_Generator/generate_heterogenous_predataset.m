@@ -22,7 +22,7 @@ for i=1:nSubDatasets
                                                             preDatasetFolder, pdfImagesFolder,...
                                                             basename, offset, check_dir);
                                                         
-    disp(string(sub_dataset_size) + " images produced for sub-dataset " + string(i) + newline);
+    disp(string(sub_dataset_size) + " pdf images produced for sub-dataset " + string(i) + newline);
     offset = offset + sub_dataset_size;
 end
 
