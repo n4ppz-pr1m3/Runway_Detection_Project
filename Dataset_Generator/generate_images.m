@@ -1,12 +1,12 @@
-function generate_images(pdfImagesFolder, imagesFolder, imageFormat, cropValue, dpi)
+function generate_images(pdfImagesFolder, imagesFolder, calibration_data, check_dir)
 
-if ~mkdir(".", imagesFolder)
+if check_dir && ~mkdir(".", imagesFolder)
     error("Unable to create " + imagesFolder);
 end
 
-if ~exist("dpi", "var")
-    dpi = 96;
-end
+imageFormat = calibration_data.imageFormat;
+dpi = calibration_data.dpi;
+cropValue = calibration_data.cropValue;
 
 cmd = "mogrify -format " + imageFormat + " -path " + imagesFolder + ...
     " -density " + string(dpi) + " -depth 8 -quality 100 -gravity South -chop 0x" +...
