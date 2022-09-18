@@ -22,9 +22,16 @@ dpi = 50;
 
 baseFilename = "calibration_image";
 imageFormat = "png";
-sourceFolder = "./Calibration/Intrinsic/Original_PDF_Calibration_Images";  % pdf images
-destinationFolder = "./Calibration/Intrinsic/Calibration_Images";          % converted images
-reprojectionFolder = "./Calibration/Intrinsic/Reprojection_Images";
+calibrationFolder = "./Calibration/Intrinsic";
+calibrationDataPath = calibrationFolder + "/calibrationIntrinsic.mat";
+calibrationData = "calibrationIntrinsic";
+sourceFolder = calibrationFolder + "/Original_PDF_Calibration_Images";  % pdf images
+destinationFolder = calibrationFolder + "/Calibration_Images";          % converted images
+reprojectionFolder = calibrationFolder + "/Reprojection_Images";
+
+if ~mkdir(".", calibrationFolder)
+    error("Unable to create " + calibrationFolder);
+end
 
 if ~mkdir(".", sourceFolder)
     error("Unable to create " + sourceFolder);
@@ -128,11 +135,11 @@ end
 close(fig)
 % Save calibration point camera coordinates
 calibrationIntrinsic.cameraPoints = cameraPoints;
-save("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat", "calibrationIntrinsic");
+save(calibrationDataPath, calibrationData);
 
 %% Images conversion
 clear; clc; close all;
-load("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat");
+load(calibrationDataPath);
 sourceFolder = calibrationIntrinsic.pdfImagesFolder;
 destinationFolder = calibrationIntrinsic.imagesFolder;
 imageFormat = calibrationIntrinsic.imageFormat;
@@ -161,7 +168,7 @@ end
 
 %% Image coordinates generation
 clc; clear; close all;
-load("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat");
+load(calibrationDataPath);
 imagesFolder = calibrationIntrinsic.imagesFolder;
 baseFilename = calibrationIntrinsic.baseFilename;
 ext = calibrationIntrinsic.imageFormat;
@@ -180,11 +187,11 @@ calibrationIntrinsic.imagePoints = imagePoints;
 % Save images size
 I = imread(filename);
 calibrationIntrinsic.imageSize = size(I);
-save("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat", "calibrationIntrinsic");
+save(calibrationDataPath, calibrationData);
 
 %% [OPTIONAL] Edit image coordintes
 clc; clear; close all;
-load("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat");
+load(calibrationDataPath);
 imagesFolder = calibrationIntrinsic.imagesFolder;
 baseFilename = calibrationIntrinsic.baseFilename;
 ext = calibrationIntrinsic.imageFormat;
@@ -196,12 +203,12 @@ imagePoints = calibrationIntrinsic.imagePoints;
 %imagePoints(numImage, :) = mark_image(filename, 1, 1, [], '');
 imagePoints(numImage, :) = mark_point(filename, 0.025);
 calibrationIntrinsic.imagePoints = imagePoints;
-save("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat", "calibrationIntrinsic");
+save(calibrationDataPath, calibrationData);
 
 %% [Default] Intrinsic parameters estimation
 % Estimates 5 parameters : focal lengths along X and Y, skew and principal point
 clc; clear; close all;
-load("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat");
+load(calibrationDataPath);
 cameraPoints = calibrationIntrinsic.cameraPoints;
 imagePoints = calibrationIntrinsic.imagePoints;
 [intrinsicMatrix0, aspectRatio, skew, mre0, lmx, lmy] = estimate_intrinsic(imagePoints, cameraPoints);
@@ -213,13 +220,13 @@ imageSize = calibrationIntrinsic.imageSize;
 fx = intrinsicMatrix(1, 1); fy = intrinsicMatrix(2, 2);
 [fov_hor, fov_ver] = fov(fx, fy, imageSize(2), imageSize(1));
 calibrationIntrinsic.fov = [fov_hor, fov_ver];
-save("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat", "calibrationIntrinsic");
+save(calibrationDataPath, calibrationData);
 
 
 %% [Optional] Show reprojections
 % Visualize reprojected control points
 clc; clear; close all;
-load("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat");
+load(calibrationDataPath);
 numImages = calibrationIntrinsic.numImages;
 width = calibrationIntrinsic.imageSize(2);
 intrinsicMatrix = calibrationIntrinsic.intrinsicMatrix;
@@ -259,7 +266,4 @@ for i=1:numImages
     saveas(fig, reproj_filename);
 end
 close all;
-save("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat", "calibrationIntrinsic");
-
-
-
+save(calibrationDataPath, calibrationData);
