@@ -27,7 +27,7 @@ calibrationDataPath = calibrationFolder + "/calibrationIntrinsic.mat";
 calibrationData = "calibrationIntrinsic";
 sourceFolder = calibrationFolder + "/Original_PDF_Calibration_Images";  % pdf images
 destinationFolder = calibrationFolder + "/Calibration_Images";          % converted images
-reprojectionFolder = calibrationFolder + "/Reprojection_Images";
+reprojectionsFolder = calibrationFolder + "/Reprojection_Images";
 
 if ~mkdir(".", calibrationFolder)
     error("Unable to create " + calibrationFolder);
@@ -41,8 +41,8 @@ if ~mkdir(".", destinationFolder)
     error("Unable to create " + destinationFolder);
 end
 
-if ~mkdir(".", reprojectionFolder)
-    error("Unable to create " + reprojectionFolder);
+if ~mkdir(".", reprojectionsFolder)
+    error("Unable to create " + reprojectionsFolder);
 end
 
 % Calibration settings
@@ -55,7 +55,7 @@ calibrationIntrinsic.dpi = dpi;
 calibrationIntrinsic.baseFilename = baseFilename;
 calibrationIntrinsic.imagesFolder = destinationFolder;
 calibrationIntrinsic.pdfImagesFolder = sourceFolder;
-calibrationIntrinsic.reprojectionFolder = reprojectionFolder;
+calibrationIntrinsic.reprojectionsFolder = reprojectionsFolder;
 calibrationIntrinsic.cameraPoints = [];
 calibrationIntrinsic.imagePoints = [];
 calibrationIntrinsic.intrinsicMatrix = [];
@@ -139,6 +139,10 @@ save(calibrationDataPath, calibrationData);
 
 %% Images conversion
 clear; clc; close all;
+
+calibrationFolder = "./Calibration/Intrinsic";
+calibrationDataPath = calibrationFolder + "/calibrationIntrinsic.mat";
+
 load(calibrationDataPath);
 sourceFolder = calibrationIntrinsic.pdfImagesFolder;
 destinationFolder = calibrationIntrinsic.imagesFolder;
@@ -168,6 +172,11 @@ end
 
 %% Image coordinates generation
 clc; clear; close all;
+
+calibrationFolder = "./Calibration/Intrinsic";
+calibrationDataPath = calibrationFolder + "/calibrationIntrinsic.mat";
+calibrationData = "calibrationIntrinsic";
+
 load(calibrationDataPath);
 imagesFolder = calibrationIntrinsic.imagesFolder;
 baseFilename = calibrationIntrinsic.baseFilename;
@@ -191,12 +200,17 @@ save(calibrationDataPath, calibrationData);
 
 %% [OPTIONAL] Edit image coordintes
 clc; clear; close all;
+
+calibrationFolder = "./Calibration/Intrinsic";
+calibrationDataPath = calibrationFolder + "/calibrationIntrinsic.mat";
+calibrationData = "calibrationIntrinsic";
+
 load(calibrationDataPath);
 imagesFolder = calibrationIntrinsic.imagesFolder;
 baseFilename = calibrationIntrinsic.baseFilename;
 ext = calibrationIntrinsic.imageFormat;
 
-numImage = 1; % Image coordinates to edit
+numImage = 3; % Image coordinates to edit
 
 filename = imagesFolder + "/" + baseFilename + "_" + string(numImage) + "." + ext;
 imagePoints = calibrationIntrinsic.imagePoints;
@@ -208,6 +222,11 @@ save(calibrationDataPath, calibrationData);
 %% [Default] Intrinsic parameters estimation
 % Estimates 5 parameters : focal lengths along X and Y, skew and principal point
 clc; clear; close all;
+
+calibrationFolder = "./Calibration/Intrinsic";
+calibrationDataPath = calibrationFolder + "/calibrationIntrinsic.mat";
+calibrationData = "calibrationIntrinsic";
+
 load(calibrationDataPath);
 cameraPoints = calibrationIntrinsic.cameraPoints;
 imagePoints = calibrationIntrinsic.imagePoints;
@@ -226,6 +245,11 @@ save(calibrationDataPath, calibrationData);
 %% [Optional] Show reprojections
 % Visualize reprojected control points
 clc; clear; close all;
+
+calibrationFolder = "./Calibration/Intrinsic";
+calibrationDataPath = calibrationFolder + "/calibrationIntrinsic.mat";
+calibrationData = "calibrationIntrinsic";
+
 load(calibrationDataPath);
 numImages = calibrationIntrinsic.numImages;
 width = calibrationIntrinsic.imageSize(2);
@@ -245,12 +269,12 @@ imagePoints = calibrationIntrinsic.imagePoints;
 mre = sqrt(sum((imagePoints-reprojectedImagePoints).^2, 'all') / numImages);
 
 imageFolder = calibrationIntrinsic.imagesFolder;
-reprojectionFolder = calibrationIntrinsic.reprojectionFolder;
+reprojectionsFolder = calibrationIntrinsic.reprojectionsFolder;
 basename = calibrationIntrinsic.baseFilename;
 ext = calibrationIntrinsic.imageFormat;
 for i=1:numImages
     filename = imageFolder + "/" + basename + "_" + string(i) + "." + ext;
-    reproj_filename = reprojectionFolder + "/reprojected_" + basename + "_" + string(i) + "." + ext;
+    reproj_filename = reprojectionsFolder + "/reprojected_" + basename + "_" + string(i) + "." + ext;
     fig = imshow(filename);
     hold on;
     plot(imagePoints(i, 1), imagePoints(i, 2), 'r+');
