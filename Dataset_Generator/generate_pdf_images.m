@@ -1,4 +1,4 @@
-function generate_pdf_images(poses_data, labels_data, pdfImagesFolder, check_dir)
+function generate_pdf_images(poses_data, labels_data, wait_times, pdfImagesFolder, check_dir)
 
 if check_dir && ~mkdir(".", pdfImagesFolder)
     error("Unable to create " + pdfImagesFolder);
@@ -7,6 +7,10 @@ end
 fig = uifigure;
 fig.WindowState = 'maximized';
 g = geoglobe(fig);
+
+initial_wait_time = wait_times(1);
+new_location_wait_time = wait_times(2);
+base_wait_time = wait_times(3);
 
 airports = string(fieldnames(poses_data));
 
@@ -29,11 +33,11 @@ for i=1:numel(airports)
         camroll(g, roll);
         drawnow
         if i==1 && j==1
-            pause(10)
+            pause(initial_wait_time)
         elseif j==1
-            pause(5)
+            pause(new_location_wait_time)
         else
-            pause(1.5)
+            pause(base_wait_time)
         end
         
         image_name = pdfImagesFolder + "/" + images_names(j) + ".pdf";
