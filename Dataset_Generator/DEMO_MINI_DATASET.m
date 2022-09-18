@@ -1,7 +1,7 @@
 clc; clear; close all;
 
 % Sample data --------------------------------------------------------
-load("./Debug/runwayData.mat");
+load("runwayData.mat");
 airports_data = runwayData;
 
 airports = string(fieldnames(airports_data));
@@ -19,7 +19,7 @@ param2 = [30, 30];
 param3 = [10000, 15000];
 coord_type = "spherical";
 
-load("./Calibration/Intrinsic/Calibration_Data/calibrationIntrinsic.mat");
+load("./Calibration/Intrinsic/calibrationIntrinsic.mat");
 
 preDatasetFolder = "./Pre_Dataset";
 pdfImagesFolder = "./Pre_Dataset/PDF_Images";
