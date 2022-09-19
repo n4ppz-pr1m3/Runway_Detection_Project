@@ -1,4 +1,4 @@
-function generate_pdf_images(poses_data, wait_times, pdfImagesFolder, check_dir)
+function generate_pdf_images(poses_data, wait_times, pdfImagesFolder, basename, check_dir)
 
 if check_dir && ~mkdir(".", pdfImagesFolder)
     error("Unable to create " + pdfImagesFolder);
@@ -16,10 +16,11 @@ airports = string(fieldnames(poses_data));
 
 for i=1:numel(airports)
     airport = airports(i);
-    images_names = poses_data.(airport){1};
-    cameraPoses = poses_data.(airport){2};
-    
-    for j=1:numel(images_names)
+    offset = poses_data.(airport).offset;
+    cameraPoses = poses_data.(airport).poses;
+    nPoses = size(cameraPoses, 1);
+
+    for j=1:nPoses
         cameraPose = cameraPoses(j, :);
         lat = cameraPose(1);
         lon = cameraPose(2);
@@ -40,7 +41,7 @@ for i=1:numel(airports)
             pause(base_wait_time)
         end
         
-        image_path = pdfImagesFolder + "/" + images_names(j) + ".pdf";
+        image_path = pdfImagesFolder + "/" + get_image_name(basename, offset + j) + ".pdf";
         exportapp(fig, image_path);               
     end
 end
