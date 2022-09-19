@@ -1,21 +1,20 @@
-function labels_data = generate_labels(airports_data, poses_data, calibrationData, basename, offset)
+function labels_data = generate_labels(airports_data, poses_data, current_labels_data, calibrationData)
 
 airports = string(fieldnames(airports_data));
 intrinsicMatrix = calibrationData.intrinsicMatrix;
 imageSize = calibrationData.imageSize;
 wgs84 = wgs84Ellipsoid;
-labels_data = [];
+labels_data = current_labels_data;
 for i=1:numel(airports)
     airport = airports(i);
     
-    % Camera poses
-    cameraPoses = poses_data.(airport);
-    nPoses = size(cameraPoses, 1);
-    
     % Images names
-    images_names = basename + pad(string(offset+1:offset+nPoses), 8, "left", "0");
-    offset = offset + nPoses;
-    
+    images_names = poses_data.(airport){1};
+
+    % Camera poses
+    cameraPoses = poses_data.(airport){2};
+    nPoses = size(cameraPoses, 1);
+
     % Runways poses
     runways = airports_data.(airport){2};
     nRunways = size(runways, 1);
@@ -71,7 +70,9 @@ for i=1:numel(airports)
             runways_masks(:, :, k) = runway_mask;
             
         end
-        labels_data.(airport) = {runways_corners, runways_bbox, runways_masks, images_names};
+        % Update labels data
+        image_name = images_names(j);
+        labels_data.(image_name) =  {runways_corners, runways_bbox, runways_masks, airport};
     end
 end
 end

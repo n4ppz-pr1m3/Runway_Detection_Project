@@ -9,20 +9,11 @@ if ~mkdir(".", masksFolder)
     error("Unable to create " + masksFolder);
 end
 
-% Images generation
-disp("Generating images...")
-nSubDatasets = numel(full_calibration_data);
-for i=1:nSubDatasets
-    calibration_data = full_calibration_data{i};
-    check_dir = (i == 1);
-    generate_images(pdfImagesFolder, imagesFolder, calibration_data, check_dir);
-end
-disp("... done" + newline)
-
 % Labels generation
 disp("Generating labels...")
+nSubDatasets = numel(full_calibration_data);
 for id_subdataset=1:nSubDatasets
-    imageFormat = full_calibration_data{i}.imageFormat;
+    imageFormat = full_calibration_data{id_subdataset}.imageFormat;
     labels_data = full_labels_data{id_subdataset};
     airports = string(fieldnames(labels_data));
     for i=1:numel(airports)
@@ -74,4 +65,14 @@ for id_subdataset=1:nSubDatasets
     end
 end
 disp("... done" + newline)
+
+% Images generation
+disp("Generating images...")
+for i=1:nSubDatasets
+    calibration_data = full_calibration_data{i};
+    check_dir = (i == 1);
+    generate_images(pdfImagesFolder, imagesFolder, calibration_data, check_dir);
+end
+disp("... done" + newline)
+
 end

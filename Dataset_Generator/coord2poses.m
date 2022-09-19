@@ -1,4 +1,4 @@
-function [poses, names] = coord2poses(...
+function poses = coord2poses(...
     coordinatesType, coordinates1, coordinates2, coordinates3, origin)
 
 % Compute poses of an object based on its locations expressed in
@@ -49,7 +49,6 @@ elseif coordinatesType == "spherical"
     
 else
     poses = [];
-    names = [];
     error(coordinatesType + " is not a supported coordinates system")
 end
 
