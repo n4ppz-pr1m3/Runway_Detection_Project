@@ -4,7 +4,7 @@ function generate_dataset(full_airports_data,...
                         preDatasetFolder, pdfImagesFolder,...
                         render_times, basename,...
                         imagesFolder, annotationsFolder, masksFolder,...
-                        validation_ratio)
+                        validationFolder, validation_ratio)
 
 % Pre dataset
 tic                               
@@ -29,13 +29,13 @@ toc
 if validation_ratio
     tic
     disp(newline + "Validating labels...")
-    validationFolder = preDatasetFolder + "/Validation_PASCAL_VOC";
     if ~mkdir(".", validationFolder)
         error("Unable to create " + validationFolder);
     end
     index = 1;
     fig = figure;
     fig.Visible = "off";
+    colors = linspecer(10, 'sequential');
     for i=1:numel(full_labels_data)
         imageFormat = full_calibration_data{i}.imageFormat;
         labels_data = full_labels_data{i};
@@ -45,11 +45,24 @@ if validation_ratio
         for j=1:sample_size
             image_name = images_names(randi(nImages));
             image_path = imagesFolder + "/" + image_name  + "." + imageFormat;
-            runways_corners = labels_data.(image_name){1};
             airport = labels_data.(image_name){4};
-            save_path = validationFolder + "/val_img_borders_" + string(index) + "." + imageFormat;
+
+            % Draw borders
+            save_path = fullfile(validationFolder, "val_img_borders_" + string(index) + "." + imageFormat);
+            runways_corners = labels_data.(image_name){1};
+            draw_borders(airport, image_path, save_path, fig, colors, runways_corners)
+
+            % Draw bounding boxes
+            runways_bounding_boxes = labels_data.(image_name){2};
+            save_path = fullfile(validationFolder, "val_img_bbox_" + string(index) + "." + imageFormat);
+            draw_bounding_boxes(airport, image_path, save_path, fig, colors, runways_bounding_boxes)
+
+            % Draw segmentation masks
+            runways_segmentation_masks = labels_data.(image_name){3};
+            save_path = fullfile(validationFolder, "val_img_seg_masks_" + string(index) + "." + imageFormat);
+            draw_segmentation_masks(airport, image_path, save_path, fig, colors, runways_segmentation_masks)
+
             index = index + 1;
-            draw_borders(airport, image_path, save_path, fig, runways_corners)
         end
     end
     close(fig);

@@ -41,7 +41,7 @@ for i=1:numel(airports)
             pause(base_wait_time)
         end
         
-        image_path = pdfImagesFolder + "/" + get_image_name(basename, offset + j) + ".pdf";
+        image_path = fullfile(pdfImagesFolder, get_image_name(basename, offset + j) + ".pdf");
         exportapp(fig, image_path);               
     end
 end
