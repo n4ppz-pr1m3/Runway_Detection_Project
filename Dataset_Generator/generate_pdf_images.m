@@ -1,4 +1,4 @@
-function generate_pdf_images(poses_data, wait_times, pdfImagesFolder, basename, check_dir)
+function generate_pdf_images(poses_data, render_times, pdfImagesFolder, basename, check_dir)
 
 if check_dir && ~mkdir(".", pdfImagesFolder)
     error("Unable to create " + pdfImagesFolder);
@@ -8,9 +8,9 @@ fig = uifigure;
 fig.WindowState = 'maximized';
 g = geoglobe(fig);
 
-initial_wait_time = wait_times(1);
-new_location_wait_time = wait_times(2);
-base_wait_time = wait_times(3);
+initial_wait_time = render_times(1);
+new_location_wait_time = render_times(2);
+base_wait_time = render_times(3);
 
 airports = string(fieldnames(poses_data));
 

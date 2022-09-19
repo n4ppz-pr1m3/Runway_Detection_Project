@@ -2,7 +2,7 @@ function [dataset_size, labels_data] = generate_homogenous_predataset(airports_d
                                                     coord_type, param1, param2, param3,...
                                                     calibrationData,...
                                                     preDatasetFolder, pdfImagesFolder,...
-                                                    wait_times, basename, offset, check_dir)
+                                                    render_times, basename, offset, check_dir)
 
 if isempty(preDatasetFolder)
     preDatasetFolder = "Pre_Dataset";
@@ -31,7 +31,7 @@ disp("... done")
 
 % Generates pdf images
 disp("Generating pdf images...")
-generate_pdf_images(poses_data, wait_times, pdfImagesFolder, basename, check_dir)
+generate_pdf_images(poses_data, render_times, pdfImagesFolder, basename, check_dir)
 disp("... done")
 
 end
