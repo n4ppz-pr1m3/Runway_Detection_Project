@@ -1,5 +1,7 @@
 function calibrationData = estimate_intrinsic(currentCalibrationData)
 
+disp("Estimating intrinsic parameters")
+
 calibrationData = currentCalibrationData;
 
 imagesPoints = calibrationData.imagesPoints;
@@ -20,6 +22,7 @@ fy = intrinsicMatrix(2, 2);
 calibrationData.fov = [fov_hor, fov_ver];
 
 save(calibrationData.file, "calibrationData");
+disp("Estimation done" + newline)
 
 end
 
