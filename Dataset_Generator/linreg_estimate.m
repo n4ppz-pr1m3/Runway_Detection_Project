@@ -1,4 +1,4 @@
-% function [K, aspectRatio, skew, mre, lmx, lmy] = estimate_intrinsic(imagePoints, cameraPoints)
+% function [K, aspectRatio, skew, mre, lmx, lmy] = estimate(imagePoints, cameraPoints)
 
 % Estimate the intrinsic parameters of a camera with a set of control points
 % with known image and camera coordinates. At least 2 points are required.
