@@ -61,7 +61,7 @@ ppy = lmy.Coefficients.Estimate(1);
 fy = lmy.Coefficients.Estimate(2);
 
 aspectRatio = fx / fy;
-if abs(aspectRatio - 1) <= 1e-3, aspectRatio = 1; end
+if abs(aspectRatio - 1) <= 1e-2, aspectRatio = 1; end
 
 % Intrinsic matrix
 K = [fx, s, ppx;...
