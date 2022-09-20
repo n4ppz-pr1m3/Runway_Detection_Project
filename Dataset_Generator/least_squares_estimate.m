@@ -1,11 +1,11 @@
-% function [K, residuals, mre] = least_squares_estimate(imagePoints, cameraPoints, aspectRatio, skew)
+% function [K, residuals, mre] = least_squares_estimate(imagesPoints, cameraPoints, aspectRatio, skew)
 
 % Estimate the intrinsic parameters of a camera with known skew and aspect
 % ratio using least squares with a set of control points with known image
 % and camera coordinates. At least 2 points are required.
 
 % Input :
-% imagePoints (N*2 2-d double array) : control points image coordinates
+% imagesPoints (N*2 2-d double array) : control points image coordinates
 % cameraPoints (N*3 2-d double array) : control points camera coordinates
 % aspectRatio (double) : camera aspect ratio
 % skew (double) : camera skew
@@ -15,12 +15,12 @@
 % residual (
 % mre (double) : mean reprojection error
 
-function [K, residuals, mre] = least_squares_estimate(imagePoints, cameraPoints, aspectRatio, skew)
+function [K, residuals, mre] = least_squares_estimate(imagesPoints, cameraPoints, aspectRatio, skew)
 
-if size(imagePoints, 1) ~= size(cameraPoints, 1)
+if size(imagesPoints, 1) ~= size(cameraPoints, 1)
     error("Image points and camera points number mismatch")
-elseif size(imagePoints, 2) ~= 2
-    error("Image points must have 2 coordinates (" + string(size(imagePoints, 2)) + ")")
+elseif size(imagesPoints, 2) ~= 2
+    error("Image points must have 2 coordinates (" + string(size(imagesPoints, 2)) + ")")
 elseif size(cameraPoints, 2) ~= 3
     error("Camera points must have 3 coordinates (" + string(size(cameraPoints, 2)) + ")")
 elseif sum(abs(cameraPoints(:, 3)) <= 1e-3) ~= 0
@@ -30,7 +30,7 @@ end
 xzC = cameraPoints(:, 1) ./ cameraPoints(:, 3);
 yzC = cameraPoints(:, 2) ./ cameraPoints(:, 3);
 
-n = size(imagePoints, 1);
+n = size(imagesPoints, 1);
 
 % % Design matrix
 % X = zeros(2*n, 3);
@@ -40,7 +40,7 @@ n = size(imagePoints, 1);
 % X(2:2:end, 3) = 1;
 % 
 % % Response vector
-% Y = imagePoints';
+% Y = imagesPoints';
 % Y = reshape(Y, [], 1);
 % Y(1:2:end) = Y(1:2:end) - skew*yzC;
 
@@ -52,7 +52,7 @@ X(1:n, 2) = 1;
 X(n+1:end, 3) = 1;
 
 % Response vector
-Y = imagePoints(:);
+Y = imagesPoints(:);
 Y(1:n) = Y(1:n) - skew*yzC;
 
 p = (X'*X) \ (X'*Y);
@@ -64,6 +64,12 @@ K = [p(1), 0, p(2);...
 % RMSE
 res = X*p - Y;
 mre = sqrt(sum(res.^2) / n);
+
+% Debug
+% reprojectedImagesPoints = cameraPoints * K';
+% reprojectedImagesPoints = reprojectedImagesPoints ./ reprojectedImagesPoints(:, 3);
+% reprojectedImagesPoints = reprojectedImagesPoints(:, 1:2);
+% mre2 = sqrt(sum((imagesPoints-reprojectedImagesPoints).^2, 'all') / n);
 
 % Residual
 residuals = (reshape(res, 2, []))';
