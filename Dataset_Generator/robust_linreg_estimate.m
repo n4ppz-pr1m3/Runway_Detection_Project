@@ -1,4 +1,4 @@
-% function [K, aspectRatio, skew, mre, lmx, lmy] = linreg_estimate(imagePoints, cameraPoints)
+% function [K, aspectRatio, skew, mre, lmx, lmy] = robust_linreg_estimate(imagePoints, cameraPoints)
 
 % Estimate the intrinsic parameters of a camera with a set of control points
 % with known image and camera coordinates. At least 2 points are required.
@@ -23,7 +23,7 @@
 % lmx (linear model object) : linear model of the estimation of fx, s and ppx
 % lmy (linear model object) : linear model of the estimation of fy and ppy
 
-function [K, aspectRatio, skew, mre, lmx, lmy] = linreg_estimate(imagePoints, cameraPoints)
+function [K, aspectRatio, skew, mre, lmx, lmy] = robust_linreg_estimate(imagePoints, cameraPoints)
 
 if size(imagePoints, 1) ~= size(cameraPoints, 1)
     error("Image points and camera points number mismatch")
