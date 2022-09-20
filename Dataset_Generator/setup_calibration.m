@@ -24,6 +24,8 @@ if ~mkdir(".", reprojectionsFolder)
     error("Unable to create " + reprojectionsFolder);
 end
 
+disp(newline + "---------------------------- Starting new calibration -------------------------------------" + newline)
+
 % Calibration settings
 calibrationData = [];
 calibrationData.file = calibrationDataPath;
