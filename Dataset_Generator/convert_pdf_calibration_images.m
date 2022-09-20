@@ -8,6 +8,8 @@ baseFilename = calibrationData.baseFilename;
 imageFormat = calibrationData.imageFormat;
 dpi = calibrationData.dpi;
 
+disp(newline + "Converting pdf calibration images to " + imageFormat)
+
 % Estimates crop
 test_file = fullfile(sourceFolder, baseFilename + "_1.pdf");
 cmd = "convert -density " + dpi + " -depth 8 -quality 100 " + test_file + " tmp.png";
@@ -46,7 +48,7 @@ end
 if status
     disp('Conversion error')
 else
-    disp('Conversion done')
+    disp("Conversion done" + newline)
 end
 
 end
