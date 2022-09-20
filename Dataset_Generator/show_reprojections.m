@@ -1,6 +1,7 @@
 function show_reprojections(calibrationData)
 
 close all;
+disp("Computing reprojections errors")
 
 numImages = calibrationData.numImages;
 width = calibrationData.imageSize(2);
@@ -40,6 +41,7 @@ for i=1:numImages
     saveas(fig, reproj_filename);
 end
 close(fig)
+disp("Done")
 
 end
 
