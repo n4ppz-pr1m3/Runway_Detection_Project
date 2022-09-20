@@ -5,7 +5,7 @@ calibrationData = currentCalibrationData;
 imagesPoints = calibrationData.imagesPoints;
 cameraPoints = calibrationData.cameraPoints;
 
-[intrinsicMatrix0, aspectRatio, skew, mre0, lmx, lmy] = linreg_estimate(imagesPoints, cameraPoints);
+[intrinsicMatrix0, aspectRatio, skew, mre0, lmx, lmy] = robust_linreg_estimate(imagesPoints, cameraPoints);
 [intrinsicMatrix, residuals, mre] = least_squares_estimate(imagesPoints, cameraPoints, aspectRatio, skew);
 
 
