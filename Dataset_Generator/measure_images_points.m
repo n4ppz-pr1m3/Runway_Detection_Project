@@ -18,8 +18,8 @@ end
 calibrationData.imagePoints = imagePoints;
 
 % Images size
-I = imread(filename);
-calibrationData.imageSize = size(I);
+image = imread(filename);
+calibrationData.imageSize = size(image);
 
 save(calibrationData.file, "calibrationData");
 
