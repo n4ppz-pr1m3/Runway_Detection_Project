@@ -17,8 +17,7 @@
 clear; clc; close all
 
 numImages = 4; % Number of images used for calibration
-cropValue = 11;
-dpi = 50;
+dpi = 30;
 
 baseFilename = "calibration_image";
 imageFormat = "png";
@@ -50,7 +49,7 @@ calibrationIntrinsic = [];
 calibrationIntrinsic.numImages = numImages;
 calibrationIntrinsic.imageFormat = imageFormat;
 calibrationIntrinsic.imageSize = [];
-calibrationIntrinsic.cropValue = cropValue;
+calibrationIntrinsic.cropValue = [];
 calibrationIntrinsic.dpi = dpi;
 calibrationIntrinsic.baseFilename = baseFilename;
 calibrationIntrinsic.imagesFolder = destinationFolder;
@@ -147,9 +146,27 @@ load(calibrationDataPath);
 sourceFolder = calibrationIntrinsic.pdfImagesFolder;
 destinationFolder = calibrationIntrinsic.imagesFolder;
 imageFormat = calibrationIntrinsic.imageFormat;
-
+baseFilename = calibrationIntrinsic.baseFilename;
 dpi = calibrationIntrinsic.dpi;
-cropValue = calibrationIntrinsic.cropValue;
+
+% Estimate crop
+test_file = fullfile(sourceFolder, baseFilename + "_1.pdf");
+cmd = "convert -density " + string(dpi) + " -depth 8 -quality 100 " + test_file + " tmp.png";
+% Linux
+if isunix
+    status = system(cmd);
+% Windows
+elseif ispc
+    status = system("magick " + cmd);
+end
+if status
+    disp('Conversion error')
+else
+    image = imread("tmp.png");
+    cropValue = ceil(1e-2 * size(image, 1));
+    calibrationIntrinsic.cropValue = cropValue;
+    disp('Crop estimation done')
+end
 
 disp("Converting images...")
 cmd = "mogrify -format " + imageFormat + " -path " + destinationFolder + ...
