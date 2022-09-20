@@ -9,6 +9,7 @@ numImages = calibrationData.numImages;
 
 if nargin == 1
     % Measure all calibration points images coordinates
+    disp("Measuring calibration points images coordinates")
     imagesPoints = zeros(numImages, 2);
     for i=1:numImages
         filename = fullfile(imagesFolder, baseFilename + "_" + string(i) + "." + ext);
@@ -19,6 +20,7 @@ if nargin == 1
     % Images size
     image = imread(filename);
     calibrationData.imageSize = size(image);
+    disp("Measurements done" + newline)
 else
     % Edit a single measurement
     image_index = varargin{1};
