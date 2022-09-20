@@ -1,5 +1,7 @@
 function calibrationData = generate_pdf_calibration_images(currentCalibrationData)
 
+disp("Generating pdf calibration images and calibration points camera coordinates")
+
 calibrationData = currentCalibrationData;
 
 dataLTP = load_dataLTP;
