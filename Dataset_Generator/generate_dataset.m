@@ -3,7 +3,7 @@ function generate_dataset(full_airports_data,...
                         full_calibration_data,...
                         preDatasetFolder, pdfImagesFolder,...
                         render_times, basename,...
-                        imagesFolder, annotationsFolder, masksFolder,...
+                        datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder,...
                         validationFolder, validation_ratio)
 
 % Pre dataset
@@ -21,8 +21,8 @@ toc
 tic
 disp(newline + "Converting pre-dataset to PASCAL VOC...");
 to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
-                imagesFolder, annotationsFolder, masksFolder)
-disp("Conversion done");
+                datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder)
+disp(newline + "Conversion done." + newline + "Dataset successfully created at " + fullfile(datasetFolder));
 toc
 
 % Validate labels
@@ -41,24 +41,25 @@ if validation_ratio
         labels_data = full_labels_data{i};
         images_names = string(fieldnames(labels_data));
         nImages = numel(images_names);
-        sample_size = max([1, round(validation_ratio*nImages)]);
-        for j=1:sample_size
-            image_name = images_names(randi(nImages));
-            image_path = imagesFolder + "/" + image_name  + "." + imageFormat;
-            airport = labels_data.(image_name){4};
+        sample_size = min([nImages, max([1, round(validation_ratio*nImages)])]);
+        sample_indices = randperm(nImages, sample_size);
+        for j=sample_indices
+            image_name = images_names(j);
+            image_path = fullfile(datasetFolder, imagesFolder, image_name  + "." + imageFormat);
+            airport = labels_data.(image_name).airport;
 
             % Draw borders
             save_path = fullfile(validationFolder, "val_img_borders_" + string(index) + "." + imageFormat);
-            runways_corners = labels_data.(image_name){1};
+            runways_corners = labels_data.(image_name).corners;
             draw_borders(airport, image_path, save_path, fig, colors, runways_corners)
 
             % Draw bounding boxes
-            runways_bounding_boxes = labels_data.(image_name){2};
+            runways_bounding_boxes = labels_data.(image_name).boxes;
             save_path = fullfile(validationFolder, "val_img_bbox_" + string(index) + "." + imageFormat);
             draw_bounding_boxes(airport, image_path, save_path, fig, colors, runways_bounding_boxes)
 
             % Draw segmentation masks
-            runways_segmentation_masks = labels_data.(image_name){3};
+            runways_segmentation_masks = labels_data.(image_name).masks;
             save_path = fullfile(validationFolder, "val_img_seg_masks_" + string(index) + "." + imageFormat);
             draw_segmentation_masks(airport, image_path, save_path, fig, colors, runways_segmentation_masks)
 
@@ -66,7 +67,7 @@ if validation_ratio
         end
     end
     close(fig);
-    disp("... done")
+    disp("... done." + newline + "Validation data successfully created at " + fullfile(validationFolder));
     toc
 end
 end
