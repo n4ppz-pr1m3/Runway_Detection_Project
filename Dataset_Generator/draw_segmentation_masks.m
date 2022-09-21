@@ -17,7 +17,7 @@ for i=1:nRunways
     image(blueMask) = B;
 end
 imshow(image);
-title(airport)
+title(airport + " Segmentation")
 saveas(fig, save_path);
 
 end
