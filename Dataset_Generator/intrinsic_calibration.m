@@ -1,5 +1,9 @@
 function calibrationData = intrinsic_calibration(numImages, dpi, calibrationFolder,...
-                                baseFilename, imageFormat)
+                                baseFilename, imageFormat, default_calibration)
+
+if ~exist("default_calibration", "var")
+    default_calibration = true;
+end
 
 calibrationData = setup_calibration(numImages, dpi, calibrationFolder,...
                                 baseFilename, imageFormat);
@@ -9,9 +13,11 @@ calibrationData = measure_images_points(calibrationData);
 calibrationData = estimate_intrinsic(calibrationData);
 pause(0.1);
 
-% Fine tuning
+disp("Fine tuning estimation")
 while true
-    prompt = "Enter an integer in the range 1-" + string(numImages) + " to edit the corresponding image or press Return to quit: ";
+    disp(['Enter an integer to edit the corresponding image coordinates and   ';...
+          're-estimate the parameters or press Return to keep the current ones']);
+    prompt = "Image index [1-" + string(numImages) + "] : ";
     image_index = input(prompt);
     if isempty(image_index)
         image_index = 0;
@@ -27,6 +33,14 @@ while true
     end
 end
 show_reprojections(calibrationData)
+
+disp(newline + "Calibration complete")
+disp("Calibration data saved to " + calibrationData.file)
+
+if default_calibration
+    save("CalibrationData.mat", "calibrationData")
+    disp("Calibration set to default. Saving calibration data to local workspace")
+end
 
 end
 
