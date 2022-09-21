@@ -7,11 +7,10 @@ for i=1:nRunways
     runway_corners = runways_corners(:, :, i);
     plot([runway_corners(1, :), runway_corners(1, 1)],...
         [runway_corners(2, :), runway_corners(2, 1)],...
-        "LineWidth", 2, "Color", colors(i, :));
+        "LineWidth", 1, "Color", colors(i, :));
 end
 hold off;
 title(airport + " Borders")
 saveas(fig, save_path);
 
 end
-
