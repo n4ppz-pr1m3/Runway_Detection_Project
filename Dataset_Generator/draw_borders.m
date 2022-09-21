@@ -10,7 +10,7 @@ for i=1:nRunways
         "LineWidth", 2, "Color", colors(i, :));
 end
 hold off;
-title(airport)
+title(airport + " Borders")
 saveas(fig, save_path);
 
 end
