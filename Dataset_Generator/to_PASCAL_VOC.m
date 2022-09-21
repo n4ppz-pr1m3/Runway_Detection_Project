@@ -1,16 +1,20 @@
 function to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
-                    imagesFolder, annotationsFolder, masksFolder)
+                    datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder)
 
+
+annotationsFolder = fullfile(datasetFolder, annotationsFolder);
 if ~mkdir(".", annotationsFolder)
     error("Unable to create " + annotationsFolder);
 end
 
+masksFolder = fullfile(datasetFolder, masksFolder);
 if ~mkdir(".", masksFolder)
     error("Unable to create " + masksFolder);
 end
 
 % Images generation
 disp("Generating images...")
+imagesFolder = fullfile(datasetFolder, imagesFolder);
 nSubDatasets = numel(full_calibration_data);
 for i=1:nSubDatasets
     calibration_data = full_calibration_data{i};
@@ -29,7 +33,7 @@ for id_subdataset=1:nSubDatasets
     % Subdataset images parameters
     images_names = string(fieldnames(labels_data));
     imageFormat = full_calibration_data{id_subdataset}.imageFormat;
-    image_path = imagesFolder + "/" + images_names(1) + "." + imageFormat;
+    image_path = fullfile(imagesFolder, images_names(1) + "." + imageFormat);
     tmp_image = imread(image_path);
     height = size(tmp_image, 1);
     width = size(tmp_image, 2);
@@ -40,24 +44,24 @@ for id_subdataset=1:nSubDatasets
         labels = labels_data.(image_name);
 
         % Annotation files
-        annotation_file = annotationsFolder + "/" + image_name + ".txt";
+        annotation_file = fullfile(annotationsFolder, image_name + ".txt");
         fileId = fopen(annotation_file, 'w');
 
         fprintf(fileId, '# Compatible with PASCAL Annotation Version 1.00\r\n');
-        image_path = imagesFolder + "/" + image_name + "." + imageFormat;
+        image_path = fullfile(imagesFolder, image_name + "." + imageFormat);
         fprintf(fileId, 'Image filename : "%s"\r\n', image_path);
         fprintf(fileId, 'Image size (X x Y x C) : %u x %u x %u\r\n', width, height, channels);
-        fprintf(fileId, 'Database : "T.B.D"\r\n');
+        fprintf(fileId, 'Database : "%s"\r\n', datasetName);
 
-        bbox = labels{2};
+        bbox = labels.boxes;
         nRunways = size(bbox, 1);
         objects = strings(1, nRunways);
         objects(:) = "PASrunway";
         objects = strjoin(objects);
         fprintf(fileId, "Objects with ground truth : %u { " + objects + " }\r\n\r\n", nRunways);
 
-        mask_image = masksFolder + "/" + image_name + "_mask." + imageFormat;
-        complete_mask = composite_mask(labels{3});
+        mask_image = fullfile(masksFolder, image_name + "_mask." + imageFormat);
+        complete_mask = composite_mask(labels.masks);
         imwrite(complete_mask, mask_image);
 
         for j=1:nRunways
