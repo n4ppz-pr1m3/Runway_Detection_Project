@@ -9,7 +9,7 @@ for i=1:nRunways
     plot(runway_bbox_plot(1, :), runway_bbox_plot(2, :), "LineWidth", 2, "Color", colors(i, :));
 end
 hold off;
-title(airport)
+title(airport + " Bounding boxes")
 saveas(fig, save_path);
 
 end
