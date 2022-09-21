@@ -1,7 +1,7 @@
 function show_reprojections(calibrationData)
 
 close all;
-disp("Computing reprojections errors")
+disp(newline + "Computing reprojections errors")
 
 numImages = calibrationData.numImages;
 width = calibrationData.imageSize(2);
@@ -21,9 +21,10 @@ imagesFolder = calibrationData.imagesFolder;
 reprojectionsFolder = calibrationData.reprojectionsFolder;
 basename = calibrationData.baseFilename;
 ext = calibrationData.imageFormat;
-fig = figure;
-fig.Visible = "off";
+% fig = figure;
+% fig.Visible = "off";
 for i=1:numImages
+    fig = figure;
     filename = fullfile(imagesFolder, basename + "_" + string(i) + "." + ext);
     reproj_filename = fullfile(reprojectionsFolder, "reproj_" + basename + "_" + string(i) + "." + ext);
     imshow(filename);
@@ -40,7 +41,7 @@ for i=1:numImages
     title("Reprojection error : " + string(errors(i)) + " pixels");
     saveas(fig, reproj_filename);
 end
-close(fig)
+%close(fig)
 disp("Done")
 
 end
