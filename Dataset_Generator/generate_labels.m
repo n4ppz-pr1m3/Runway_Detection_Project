@@ -72,7 +72,12 @@ for i=1:numel(airports)
         end
         % Update labels data
         image_name = get_image_name(basename, offset + j);
-        labels_data.(image_name) =  {runways_corners, runways_bbox, runways_masks, airport};
+        %labels_data.(image_name) =  {runways_corners, runways_bbox, runways_masks, airport};
+        labels_data.(image_name).airport = airport;
+        labels_data.(image_name).corners = runways_corners;
+        labels_data.(image_name).boxes = runways_bbox;
+        labels_data.(image_name).masks = runways_masks;
+        
     end
 end
 end
