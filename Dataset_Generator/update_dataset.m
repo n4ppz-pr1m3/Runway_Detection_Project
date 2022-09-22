@@ -27,7 +27,7 @@ toc
 
 % Validate labels
 tic
-validate_dataset(newValidationFolder, validation_ratio,...
+validate_labels(newValidationFolder, validation_ratio,...
     updated_full_labels_data, updated_full_calibration_data, fullfile(newDatasetFolder, newImagesFolder));
 toc
 end
