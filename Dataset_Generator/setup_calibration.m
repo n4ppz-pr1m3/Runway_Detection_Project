@@ -3,6 +3,10 @@ function calibrationData = setup_calibration(numImages, dpi,...
                                              baseFilename, imageFormat)
 
 
+if isempty(calibrationFolder)
+    calibrationFolder = "Calibration";
+end
+
 pdfImages = fullfile(calibrationFolder, "Original_PDF_Calibration_Images");
 imagesFolder = fullfile(calibrationFolder, "Calibration_Images");
 reprojectionsFolder = fullfile(calibrationFolder, "Reprojections_Images");
