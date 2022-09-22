@@ -23,6 +23,5 @@ end
 end
 
 function bool = isVector2(v)
-bool = (numel(size(v)) == 2) && ...
-    ((size(v, 1) == 2 && size(v, 2) == 1) || (size(v, 1) == 1 && size(v, 2) == 2));
+bool = isvector(v) && (numel(v) == 2);
 end
