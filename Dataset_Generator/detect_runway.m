@@ -121,7 +121,9 @@ persistent dLTP
 % Image generation
 dpi = calibrationData.dpi;
 cropValue = calibrationData.cropValue;
-cmd = "convert -density " + string(dpi) + " -depth 8 -quality 100 -gravity South -chop 0x" + string(cropValue) + " tmp.pdf tmp.png";
+ext = calibrationData.imageFormat;
+tmp_img = "tmp." + ext;
+cmd = "convert -density " + dpi + " -depth 8 -quality 100 -gravity South -chop 0x" + cropValue + " tmp.pdf " + tmp_img;
 
 % Mode
 manualMode = ~isempty(uiButtons);
@@ -254,7 +256,7 @@ for i=1:nRunways
 end
 
 % Image
-image = imread("tmp.png");
+image = imread(tmp_img);
 
 % Colors
 colors = linspecer(nRunways+2, 'sequential');
@@ -335,7 +337,7 @@ fig2.WindowState = "normal";
 fig2.Visible = "on";
 
 if save
-    saveas(fig2, "./Gallery/" + airport + ".png");
+    saveas(fig2, fullfile("Gallery", airport + "." + ext));
 end
 
 end
