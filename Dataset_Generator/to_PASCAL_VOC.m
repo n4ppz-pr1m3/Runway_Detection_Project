@@ -2,9 +2,21 @@ function to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,
                     datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder)
 
 
+if isempty(datasetFolder)
+    datasetFolder = "Dataset";
+end
+
+if isempty(annotationsFolder)
+    annotationsFolder = "Annotations";
+end
+
 annotationsFolder = fullfile(datasetFolder, annotationsFolder);
 if ~mkdir(".", annotationsFolder)
     error("Unable to create " + annotationsFolder);
+end
+
+if isempty(masksFolder)
+    masksFolder = "Masks";
 end
 
 masksFolder = fullfile(datasetFolder, masksFolder);
@@ -14,6 +26,9 @@ end
 
 % Images generation
 disp("Generating images...")
+if isempty(imagesFolder)
+    imagesFolder = "Images";
+end
 imagesFolder = fullfile(datasetFolder, imagesFolder);
 nSubDatasets = numel(full_calibration_data);
 for i=1:nSubDatasets
