@@ -1,4 +1,4 @@
-function generate_pdf_images(poses_data, render_times, pdfImagesFolder, basename, check_dir)
+function generate_pdf_images(poses_data, render_times, pdfImagesFolder, pad_value, check_dir)
 
 if check_dir && ~mkdir(".", pdfImagesFolder)
     error("Unable to create " + pdfImagesFolder);
@@ -41,7 +41,8 @@ for i=1:numel(airports)
             pause(base_wait_time)
         end
         
-        image_path = fullfile(pdfImagesFolder, get_image_name(basename, offset + j) + ".pdf");
+        pdf_image_name = strcat(get_image_name('', offset+j, pad_value), '.pdf');
+        image_path = fullfile(pdfImagesFolder, pdf_image_name);
         exportapp(fig, image_path);               
     end
 end
