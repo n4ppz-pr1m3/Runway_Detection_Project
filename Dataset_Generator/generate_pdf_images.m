@@ -41,7 +41,7 @@ for i=1:numel(airports)
             pause(base_wait_time)
         end
         
-        pdf_image_name = strcat(get_image_name('', offset+j, pad_value), '.pdf');
+        pdf_image_name = strcat(format_indexed_name('', offset+j, pad_value), '.pdf');
         image_path = fullfile(pdfImagesFolder, pdf_image_name);
         exportapp(fig, image_path);               
     end
