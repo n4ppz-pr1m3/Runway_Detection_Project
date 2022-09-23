@@ -6,7 +6,7 @@ end
 
 
 % Images conversion
-disp("Converting images...")
+disp(newline + "Converting images...")
 imageFormat = calibration_data.imageFormat;
 dpi = calibration_data.dpi;
 cropValue = calibration_data.cropValue;
@@ -31,7 +31,6 @@ else
 end
 
 % Images renaming
-tic
 disp("Renaming images...")
 [~, images_names, ext] = get_names(tmpFolder);
 for i=1:numel(images_names)
@@ -43,7 +42,6 @@ for i=1:numel(images_names)
     end
 end
 disp("... done")
-toc
 
 end
 
