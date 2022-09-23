@@ -1,4 +1,4 @@
-function labels_data = generate_labels(airports_data, poses_data, calibrationData, basename)
+function labels_data = generate_labels(airports_data, poses_data, calibrationData, pad_value)
 
 airports = string(fieldnames(airports_data));
 intrinsicMatrix = calibrationData.intrinsicMatrix;
@@ -71,7 +71,7 @@ for i=1:numel(airports)
             
         end
         % Update labels data
-        image_name = get_image_name(basename, offset + j);
+        image_name = get_image_name("LBL", offset + j, pad_value);
         %labels_data.(image_name) =  {runways_corners, runways_bbox, runways_masks, airport};
         labels_data.(image_name).airport = airport;
         labels_data.(image_name).corners = runways_corners;
