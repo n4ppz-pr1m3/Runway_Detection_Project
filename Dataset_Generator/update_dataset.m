@@ -19,7 +19,7 @@ toc
 
 % Conversion to PASCAL VOC
 tic
-disp(newline + "Converting pre-dataset to PASCAL VOC...");
+disp(newline + "Converting pre-dataset to PASCAL VOC..." + newline);
 to_PASCAL_VOC(updated_full_calibration_data, updated_full_labels_data, pdfImagesFolder,...
                 newDatasetName, newDatasetFolder, newImagesFolder, newAnnotationsFolder, newMasksFolder, basename)
 disp(newline + "Conversion done." + newline + "New dataset successfully created at " + fullfile(newDatasetFolder));
