@@ -2,7 +2,7 @@ function [labels_data, poses_data, dataset_size] = generate_homogenous_predatase
                                                     coord_type, param1, param2, param3,...
                                                     calibrationData,...
                                                     preDatasetFolder, pdfImagesFolder,...
-                                                    render_times, basename, offset, check_dir)
+                                                    render_times, pad_value, offset, check_dir)
 
 if isempty(preDatasetFolder)
     preDatasetFolder = "Pre_Dataset";
@@ -25,13 +25,13 @@ disp("... done")
 
 % Generates labels
 disp("Generating labels...")
-labels_data = generate_labels(airports_data, poses_data, calibrationData, basename);
+labels_data = generate_labels(airports_data, poses_data, calibrationData, pad_value);
 %save(fullfile(preDatasetFolder, "labels_data_" + range + ".mat"), "labels_data"); % Debug
 disp("... done")
 
 % Generates pdf images
 disp("Generating pdf images...")
-generate_pdf_images(poses_data, render_times, pdfImagesFolder, basename, check_dir)
+generate_pdf_images(poses_data, render_times, pdfImagesFolder, pad_value, check_dir)
 disp("... done")
 
 end
