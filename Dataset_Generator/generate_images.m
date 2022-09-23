@@ -6,7 +6,7 @@ end
 
 
 % Images conversion
-disp(newline + "Converting images...")
+disp("Converting images...")
 imageFormat = calibration_data.imageFormat;
 dpi = calibration_data.dpi;
 cropValue = calibration_data.cropValue;
