@@ -1,5 +1,5 @@
 function to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
-                    datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder)
+                    datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder, basename)
 
 
 if isempty(datasetFolder)
@@ -31,12 +31,20 @@ if isempty(imagesFolder)
 end
 imagesFolder = fullfile(datasetFolder, imagesFolder);
 nSubDatasets = numel(full_calibration_data);
+tmpFolder = "tmpImages";
+if ~mkdir(".", tmpFolder)
+    error("Unable to create " + tmpFolder);
+end
 for i=1:nSubDatasets
     calibration_data = full_calibration_data{i};
     check_dir = (i == 1);
-    generate_images(pdfImagesFolder, imagesFolder, calibration_data, check_dir);
+    generate_images(calibration_data, pdfImagesFolder, tmpFolder, imagesFolder, basename, check_dir);
 end
-disp("... done" + newline)
+[status, msg] = rmdir(tmpFolder);
+if status
+    disp(msg);
+end
+disp("Images created" + newline)
 
 % Labels generation
 disp("Generating labels...")
@@ -46,17 +54,18 @@ for id_subdataset=1:nSubDatasets
     labels_data = full_labels_data{id_subdataset};
 
     % Subdataset images parameters
-    images_names = string(fieldnames(labels_data));
+    labels_names = fieldnames(labels_data);
     imageFormat = full_calibration_data{id_subdataset}.imageFormat;
-    image_path = fullfile(imagesFolder, images_names(1) + "." + imageFormat);
+    image_path = fullfile(imagesFolder, basename + labels_names{1}(4:end) + "." + imageFormat);
     tmp_image = imread(image_path);
     height = size(tmp_image, 1);
     width = size(tmp_image, 2);
     channels = size(tmp_image, 3);
 
-    for i=1:numel(images_names)
-        image_name = images_names(i);
-        labels = labels_data.(image_name);
+    for i=1:numel(labels_names)
+        label_name = labels_names{i};
+        labels = labels_data.(label_name);
+        image_name = basename + label_name(4:end);
 
         % Annotation files
         annotation_file = fullfile(annotationsFolder, image_name + ".txt");
@@ -93,7 +102,7 @@ for id_subdataset=1:nSubDatasets
 
     end
 end
-disp("... done")
+disp("Labels created")
 
 
 end
