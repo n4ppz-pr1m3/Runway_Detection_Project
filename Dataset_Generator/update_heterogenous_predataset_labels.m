@@ -1,7 +1,7 @@
 function new_full_labels_data = update_heterogenous_predataset_labels(full_airports_data,...
                                                                     new_full_calibrationData,...
                                                                     preDatasetFolder,...
-                                                                    basename)
+                                                                    pad_value)
 
 full_poses_path = fullfile(preDatasetFolder, "full_poses_data.mat");                         
 load(full_poses_path, "full_poses_data");
@@ -12,7 +12,7 @@ for i=1:nSubDatasets
     airports_data = full_airports_data{i};
     poses_data = full_poses_data{i};
     calibrationData = new_full_calibrationData{i};
-    new_full_labels_data{i} = generate_labels(airports_data, poses_data, calibrationData, basename);                                                     
+    new_full_labels_data{i} = generate_labels(airports_data, poses_data, calibrationData, pad_value);                                                     
     disp("... done")
 end
 save(full_poses_path, "full_poses_data");
