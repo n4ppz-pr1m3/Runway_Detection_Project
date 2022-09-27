@@ -17,6 +17,9 @@ updated_full_labels_data = update_heterogenous_predataset_labels(full_airports_d
 disp(newline + "Update complete")
 toc
 
+% Saves labels used
+save_labels(preDatasetFolder, datasetName);
+
 % Conversion to PASCAL VOC
 tic
 disp(newline + "Converting pre-dataset to PASCAL VOC..." + newline);
