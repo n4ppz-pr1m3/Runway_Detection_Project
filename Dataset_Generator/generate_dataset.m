@@ -22,6 +22,10 @@ toc
 % Conversion to PASCAL VOC
 tic
 disp(newline + "Converting pre-dataset to PASCAL VOC...");
+% Saves labels used
+save_labels(preDatasetFolder, datasetName);
+
+% Conversion
 to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
                 datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder, basename)
 disp(newline + "Conversion done." + newline + "Dataset successfully created at " + fullfile(datasetFolder));
