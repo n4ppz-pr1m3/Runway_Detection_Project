@@ -1,6 +1,6 @@
 function save_labels(preDatasetFolder, datasetName)
 
-disp("Saving labels...")
+disp(newline + "Saving labels...")
 labels_file = fullfile(preDatasetFolder, "full_labels_data.mat");
 named_labels_file = fullfile(preDatasetFolder, strcat("full_labels_data_", datasetName, ".mat"));
 [status, msg] = copyfile(labels_file, named_labels_file);
