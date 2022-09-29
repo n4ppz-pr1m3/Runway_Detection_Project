@@ -25,7 +25,7 @@ if ~mkdir(".", masksFolder)
 end
 
 % Images generation
-disp("Generating images...")
+disp(newline + "Generating images...")
 if isempty(imagesFolder)
     imagesFolder = "Images";
 end
