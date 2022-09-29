@@ -18,7 +18,7 @@ disp(newline + "Update complete")
 toc
 
 % Saves labels used
-save_labels(preDatasetFolder, datasetName);
+save_labels(preDatasetFolder, newDatasetName);
 
 % Conversion to PASCAL VOC
 tic
