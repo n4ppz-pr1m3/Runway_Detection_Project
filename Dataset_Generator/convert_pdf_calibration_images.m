@@ -1,3 +1,14 @@
+% function calibrationData = convert_pdf_calibration_images(currentCalibrationData)
+
+% Converts pdf calibration images to target image size and format specified
+% in calibration data
+
+% Input :
+% currentCalibrationData (calibration struct) : input calibration data
+
+% Output :
+% calibrationData (calibration struct) : updated calibration data
+
 function calibrationData = convert_pdf_calibration_images(currentCalibrationData)
 
 calibrationData = currentCalibrationData;
