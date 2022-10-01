@@ -1,3 +1,15 @@
+% function [line, xdata, ydata] = drawline(color)
+
+% Draws a line of a specified color.
+
+% Input :
+% color (color) : line color
+
+% Output :
+% line (3 1-d double array) : line homogenous coordinates
+% xdata (2 1-d double array) : line endpoints X coordinates
+% ydata (2 1-d double array) : line endpoints Y coordinates
+
 function [line, xdata, ydata] = drawline(color)
 
 if ~exist("color", "var")
