@@ -5,8 +5,8 @@
 % Input :
 % fx (double) : focal length of the camera along the x axis
 % fy (double) : focal length of the camera along the y axis
-% width (double) : width of the image
-% height (double) : height of the image
+% width (double) : image width
+% height (double) : image height
 
 % Output :
 % fov_hor (double) : horizontal field of view in degrees
