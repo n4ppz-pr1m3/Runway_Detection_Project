@@ -1,3 +1,19 @@
+% function calibrationData = estimate_intrinsic(currentCalibrationData)
+
+% Computes the intrinsic parameters of a camera with the provided calibration data
+
+% On top of the intrinsic parameters, the calibration data is updated with
+% the following information:
+% - Reprojection residuals
+% - Mean reprojection error
+% - Camera field of view
+
+% Input :
+% currentCalibrationData (calibration struct) : calibration data
+
+% Output :
+% calibrationData (calibration struct) : updated calibration data
+
 function calibrationData = estimate_intrinsic(currentCalibrationData)
 
 disp("Estimating intrinsic parameters")
