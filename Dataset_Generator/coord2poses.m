@@ -1,28 +1,14 @@
-function poses = coord2poses(...
-    coordinatesType, coordinates1, coordinates2, coordinates3, origin)
+% function poses = coord2poses(...
+%     coordinatesType, coordinates1, coordinates2, coordinates3, origin)
 
-% Compute poses of an object based on its locations expressed in
+% Computes poses of an object based on its locations expressed in
 % the specified coordinates system w.r.t. the specified origin.
 
 % The locations of the object and the origin are expressed in geodetic
 % coordinates (WGS84). The orientations of the object are such that the
-% object is always aiming at the origin. Each set of orientation angles are
-% w.r.t the ENU reference frame at the object's location.
+% object is always aiming at the origin. Each set of orientation angles
+% are w.r.t the ENU reference frame at the object's location.
 
-% Input :
-% origin (3 1-d double array) : origin's geodetic coordinates
-% Object's coordinates
-% coordinates1 (1-d double array) : first set of coordinates
-% coordinates2 (1-d double array) : second set of coordinates
-% coordinates3 (1-d double array) : third set of coordinates
-% coordinatesType (string) : coordinates system
-% coordinatesType = 'cylindrical'|'spherical'
-
-% Output :
-% poses (Nx6 2-d double array) : object's poses
-% names (1-d string array) : names associated with each pose
-
-% Notes :
 % The number of output poses is : numel(coordinates1) * numel(coordinates2) * numel(coordinates3)
 
 % Each pose is a 6-elements vector such that :
@@ -34,6 +20,19 @@ function poses = coord2poses(...
 % rollObject = pose(6)
 
 % Only cylindrical and spherical coordinates systems are supported.
+
+% Input :
+% coordinatesType (string) : coordinates system ('cylindrical'|'spherical')
+% coordinates1 (1-d double array) : first set of coordinates
+% coordinates2 (1-d double array) : second set of coordinates
+% coordinates3 (1-d double array) : third set of coordinates
+% origin (3 1-d double array) : origin's geodetic coordinates
+
+% Output :
+% poses (Nx6 2-d double array) : object's poses
+
+function poses = coord2poses(...
+    coordinatesType, coordinates1, coordinates2, coordinates3, origin)
 
 if coordinatesType == "cylindrical"
     theta = coordinates1;
@@ -48,11 +47,7 @@ elseif coordinatesType == "spherical"
     poses = spherical2poses(theta, phi, r, origin);
     
 else
-    poses = [];
     error(coordinatesType + " is not a supported coordinates system")
 end
 
 end
-
-
-
