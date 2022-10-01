@@ -1,4 +1,4 @@
-function M = extrinsic_camera_matrix(cameraPose, worldPose)
+% function M = extrinsic_camera_matrix(cameraPose, worldPose)
 
 % Compute the extrinsic parameters matrix of the camera with rotation
 % matrices
@@ -19,6 +19,7 @@ function M = extrinsic_camera_matrix(cameraPose, worldPose)
 % [xW; yW; zW] : coordinates of a point P in the world reference frame
 % [xC; yC; zC] : coordinates of P in the camera reference frame
 
+% A pose is represented as a 6dof vector.
 % pose := [lat, lon, ht, heading, pitch, roll]
 % lat : geodetic coordinates of the object
 % lon :                    -
@@ -33,6 +34,8 @@ function M = extrinsic_camera_matrix(cameraPose, worldPose)
 
 % Output :
 % M (3*4 2-d double array) : rigid body transformation matrix
+
+function M = extrinsic_camera_matrix(cameraPose, worldPose)
 
 % Rotation component
 % rotation from world's NED to world frame
