@@ -1,3 +1,18 @@
+% function omega = estimate_iac(homographies)
+
+% Estimates the image of the absolute conic (3x3 spd matrix) with a set of
+% homographies.
+
+% We assume here an imaging camera with square pixels such that:
+% omega(1, 1) = omega(2, 2) (unit aspect ratio)
+% omega(1, 2) = omega(2, 1) = 0 (no skew)
+
+% Input :
+% homographies (3x3xN 3-d double array) : homographies
+
+% Output :
+% omega (3x3 2-d double array) : image of the absolute conic under the imaging camera
+
 function omega = estimate_iac(homographies)
 
 n = size(homographies, 3);
