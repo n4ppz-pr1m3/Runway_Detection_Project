@@ -1,3 +1,21 @@
+% function K = estimate_intrinsic_iac(omega, method)
+
+% Computes the intrinsic parameters of a camera from the image of the
+% absolute conic.
+
+% The camera is assumed to have square pixels.
+
+% Two computation strategies are available, one based on a closed-form extraction of
+% the parameters (method='direct') and the other based on a Cholesky
+% factorization (method='cholesky');
+
+% Input :
+% omega (3x3 2-d double array) : image of the absolute conic
+% method (string) : computation method ('direct'|'cholesky')
+
+% Output :
+% K (3x3 2-d double array) : camera intrinsic matrix
+
 function K = estimate_intrinsic_iac(omega, method)
 
 assert(all(size(omega) == [3, 3]), "omega is expected to be 3x3")
