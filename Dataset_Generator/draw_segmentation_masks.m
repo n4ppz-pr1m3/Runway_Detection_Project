@@ -1,3 +1,15 @@
+% function draw_segmentation_masks(airport, image_path, save_path, fig, colors, runways_segmentation_masks)
+
+% Applies segmentation masks on an airport image.
+
+% Input :
+% airport (string) : airport name
+% image_path (string) : path to the image file
+% save_path (string) : save path of the edited image
+% fig (figure handle) : figure object used to display the image
+% colors (Nx3 2-d double array) : set of RGB colors
+% runways_segmentation_masks (HxWxN 3-d logical array) : segmentation masks of the airport's runways
+
 function draw_segmentation_masks(airport, image_path, save_path, fig, colors, runways_segmentation_masks)
 
 image = imread(image_path);
