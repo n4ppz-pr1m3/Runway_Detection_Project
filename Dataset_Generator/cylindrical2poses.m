@@ -1,8 +1,6 @@
-% TO DO : UPDATE DOC
+% function poses = cylindrical2poses(theta, r, h, origin)
 
-% function [poses, names] = cylindrical2poses(theta, r, h, origin, basename, offset)
-
-% Compute poses of an object based on its locations expressed in
+% Computes poses of an object based on its locations expressed in
 % cylindrical coordinates w.r.t. the specified origin.
 
 % The locations of the object and the origin are expressed in geodetic
@@ -10,19 +8,6 @@
 % object is always aiming at the origin. Each set of orientation angles are
 % w.r.t the ENU reference frame at the object's location.
 
-% Input :
-% origin (3 1-d double array) : origin's geodetic coordinates
-% Object's cylindrical coordinates
-% theta (1-d double array) : angular coordinates (degrees)
-% r (1-d double array) : radial coordinates
-% h (1-d double array) : elevation coordinates
-% basename (string) : basename of a pose
-
-% Output :
-% poses (Nx6 2-d double array) : object's poses
-% names (1-d string array) : names associated with each pose
-
-% Notes :
 % The number of output poses is : numel(theta) * numel(r) * numel(h)
 
 % Each pose is a 6-elements vector such that :
@@ -33,6 +18,16 @@
 % pitchObject = pose(5)
 % rollObject = pose(6)
 
+% Input :
+% Object's cylindrical coordinates
+% theta (1-d double array) : angular coordinates (degrees)
+% r (1-d double array) : radial coordinates
+% h (1-d double array) : elevation coordinates
+% origin (3 1-d double array) : origin's geodetic coordinates
+
+% Output :
+% poses (Nx6 2-d double array) : object's poses
+
 function poses = cylindrical2poses(theta, r, h, origin)
 
 nR = numel(r);
@@ -41,8 +36,6 @@ theta = reshape(theta, [], 1);
 nH = numel(h);
 nPoses = nR * nTh * nH;
 poses = zeros(nPoses, 6);
-
-%names = basename + pad(string(offset+1:offset+nPoses), 8, "left", "0");
 
 % Origin's geodetic coordinates
 latOrigin = origin(1);
