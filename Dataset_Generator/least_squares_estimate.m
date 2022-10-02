@@ -1,3 +1,4 @@
+
 % function [K, residuals, mre] = least_squares_estimate(imagesPoints, cameraPoints, aspectRatio, skew)
 
 % Estimate the intrinsic parameters of a camera with known skew and aspect
@@ -64,12 +65,6 @@ K = [p(1), 0, p(2);...
 % RMSE
 res = X*p - Y;
 mre = sqrt(sum(res.^2) / n);
-
-% Debug
-% reprojectedImagesPoints = cameraPoints * K';
-% reprojectedImagesPoints = reprojectedImagesPoints ./ reprojectedImagesPoints(:, 3);
-% reprojectedImagesPoints = reprojectedImagesPoints(:, 1:2);
-% mre2 = sqrt(sum((imagesPoints-reprojectedImagesPoints).^2, 'all') / n);
 
 % Residual
 residuals = (reshape(res, 2, []))';
