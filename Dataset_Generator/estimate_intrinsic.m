@@ -1,3 +1,4 @@
+
 % function calibrationData = estimate_intrinsic(currentCalibrationData)
 
 % Computes the intrinsic parameters of a camera with the provided calibration data
