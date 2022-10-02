@@ -1,5 +1,5 @@
 
-function moveplot(h,opt,tool)
+% function moveplot(h,opt,tool)
 % function moveplot(h,option)
 %
 % INPUTS:      h = handle to a line object (e.g. created by a plot command)
@@ -48,6 +48,9 @@ function moveplot(h,opt,tool)
 % Alex Woo, woo@geomi.com
 % 26 February 2002
 %
+
+function moveplot(h,opt,tool)
+
 switch nargin
 case 0
     error('Must Specify a handle to a line object')
