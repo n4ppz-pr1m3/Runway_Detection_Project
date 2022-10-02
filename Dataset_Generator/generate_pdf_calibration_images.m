@@ -1,3 +1,16 @@
+% function calibrationData = generate_pdf_calibration_images(currentCalibrationData)
+
+% Interactive application to generate pdf calibration images.
+
+% In addition, calibration settings are updated with the control point
+% camera coordinates for each image.
+
+% Input :
+% currentCalibrationData (calibration data struct) : input calibration settings
+
+% Output :
+% calibrationData (calibration data struct) : updated calibration settings
+
 function calibrationData = generate_pdf_calibration_images(currentCalibrationData)
 
 disp("Generating pdf calibration images and calibration points camera coordinates")
@@ -65,11 +78,11 @@ for i=1:numImages
     rollCam = camroll(g);
     cameraPose = [latCam, lonCam, htCam, headingCam, pitchCam, rollCam];
 
-    % Camera coordinate
+    % Camera coordinates
     worldTransform = z_extrinsic_matrix(cameraPose, worldPose);
     cameraPoints(i, :) = (worldTransform * [worldPoint; 1])';
  
-    % Save image
+    % Saves image
     pdfImages = calibrationData.pdfImagesFolder;
     filename = fullfile(pdfImages, baseFilename + "_" + string(i) + ".pdf");
     exportapp(fig, filename);
