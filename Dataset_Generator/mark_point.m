@@ -1,3 +1,4 @@
+
 % function marked_point = mark_point(filename, step)
 
 % Returns the image coordinates of a user specified point
@@ -9,7 +10,7 @@
 
 % Input :
 % filename (string) : name of the image file
-% step (double) : axes displacement
+% step (double) : axes displacement on key press
 
 % Output :
 % marked_point (2 1-d array double) : 2d coordinates of the marked point
