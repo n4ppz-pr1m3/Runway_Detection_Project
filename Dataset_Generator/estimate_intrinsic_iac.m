@@ -1,3 +1,4 @@
+
 % function K = estimate_intrinsic_iac(omega, method)
 
 % Computes the intrinsic parameters of a camera from the image of the
