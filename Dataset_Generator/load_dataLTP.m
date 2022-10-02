@@ -1,4 +1,7 @@
-% LTP info for calibration
+
+% function data = load_dataLTP
+
+% Returns the LTP information used to perform intrinsic calibration.
 
 function data = load_dataLTP
 
