@@ -1,3 +1,4 @@
+
 % function extrinsics = extrinsicMatrix2extrinsics(extrinsicMatrix)
 
 % Converts an extrinsic matrix to a 6dof vector.
