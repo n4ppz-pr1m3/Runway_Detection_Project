@@ -1,3 +1,22 @@
+% function generate_pdf_images(poses_data, render_times, pdfImagesFolder, pad_value, check_dir)
+
+% Generates pdf images from poses data.
+
+% render_times := [initial_delay, new_airport_delay, base_delay] controls
+% the rendering process :
+% - initial_delay : time before rendering the first image
+% - new_airport_delay : time before rendering the first image of an airport
+% - base_delay : time between two consecutives images renders
+
+% The images names are their indices padded with pad_value 0.
+
+% Input :
+% poses_data (poses data struct) : camera poses used to produce the images
+% render_times (3 1-d double array) : render times
+% pdfImagesFolder (string) : path to the destination pdf images folder
+% pad_value (integer) : padding value for files indexing
+% check_dir (boolean) : specifies if a folder needs to be created
+
 function generate_pdf_images(poses_data, render_times, pdfImagesFolder, pad_value, check_dir)
 
 if check_dir && ~mkdir(".", pdfImagesFolder)
