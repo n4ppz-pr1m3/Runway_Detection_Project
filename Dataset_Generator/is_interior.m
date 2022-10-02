@@ -1,3 +1,4 @@
+
 % function bool = is_interior(p, polygon, method)
 
 % Checks if a point is inside a convex polygon
