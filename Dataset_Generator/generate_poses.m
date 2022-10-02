@@ -1,3 +1,19 @@
+% function [poses_data, poses_count] = generate_poses(airports_data, coord_type, param1, param2, param3, offset)
+
+% Generates poses data from camera coordinates.
+
+% Input :
+% airports_data (airports data struct) : airports data
+% coord_type (string) : coordinates system ('cylindrical'|'spherical')
+% param1 (1-d double array) : set of first components coordinates
+% param2 (1-d double array) : set of second components coordinates
+% param3 (1-d double array) : set of third components coordinates
+% offset (integer) : initial offset value
+
+% Output :
+% poses_data (poses data struct) : poses data
+% poses_count (integer) : number of poses generated
+
 function [poses_data, poses_count] = generate_poses(airports_data, coord_type, param1, param2, param3, offset)
 
 airports = string(fieldnames(airports_data));
