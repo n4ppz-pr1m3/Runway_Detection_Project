@@ -1,3 +1,14 @@
+
+% function show_reprojections(calibrationData)
+
+% Vizualize the control point reprojections.
+
+% The images are also saved in the reprojection folder specified in the
+% calibration settings.
+
+% Input :
+% calibrationData (calibration data struct) : calibration settings
+
 function show_reprojections(calibrationData)
 
 close all;
