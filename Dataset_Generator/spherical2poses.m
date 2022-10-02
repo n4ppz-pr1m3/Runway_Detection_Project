@@ -1,6 +1,5 @@
-% TO DO : UPDATE DOC
 
-function poses = spherical2poses(theta, phi, r, origin)
+% function poses = spherical2poses(theta, phi, r, origin)
 
 % Compute poses of an object based on its locations expressed in
 % spherical coordinates w.r.t. the specified origin.
@@ -11,16 +10,14 @@ function poses = spherical2poses(theta, phi, r, origin)
 % w.r.t the ENU reference frame at the object's location.
 
 % Input :
-% origin (3 1-d double array) : origin's geodetic coordinates
 % Object's spherical coordinates
 % theta (1-d double array) : azimuth angles (degrees)
 % phi (1-d double array) : elevation angles (degrees)
 % r (1-d double array) : radial coordinates
-% basename (string) : basename of a pose
+% origin (3 1-d double array) : origin's geodetic coordinates
 
 % Output :
 % poses (Nx6 2-d double array) : object's poses
-% names (1-d string array) : names associated with each pose
 
 % Notes :
 % The number of output poses is : numel(theta) * numel(phi) * numel(r)
@@ -33,6 +30,7 @@ function poses = spherical2poses(theta, phi, r, origin)
 % pitchObject = pose(5)
 % rollObject = pose(6)
 
+function poses = spherical2poses(theta, phi, r, origin)
 
 nR = numel(r);
 nTh = numel(theta);
