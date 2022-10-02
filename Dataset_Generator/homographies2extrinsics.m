@@ -1,3 +1,19 @@
+% function extrinsics = homographies2extrinsics(homographies, intrinsicMatrix)
+
+% Computes extrinsics vectors from a set of homographies and an intrinsic matrix.
+
+% In the context of Zhang calibration, each homography represents the
+% transformation associated with the imaging of a planar surface. The
+% corresponding extrinsics vector encodes the relative pose of the camera
+% w.r.t the surface.
+
+% Input :
+% homographies (3x3xN 3-d double array) : homographies
+% intrinsicMatrix (3x3 2-d double array) : intrinsic matrix
+
+% Output :
+% extrinsics (6xN 2-d double array) : extrinsics vectors
+
 function extrinsics = homographies2extrinsics(homographies, intrinsicMatrix)
 
 nHomographies = size(homographies, 3);
