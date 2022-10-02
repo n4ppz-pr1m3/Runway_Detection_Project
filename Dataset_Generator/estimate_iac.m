@@ -1,3 +1,4 @@
+
 % function omega = estimate_iac(homographies)
 
 % Estimates the image of the absolute conic (3x3 spd matrix) with a set of
