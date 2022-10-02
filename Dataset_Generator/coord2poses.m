@@ -23,9 +23,9 @@
 
 % Input :
 % coordinatesType (string) : coordinates system ('cylindrical'|'spherical')
-% coordinates1 (1-d double array) : first set of coordinates
-% coordinates2 (1-d double array) : second set of coordinates
-% coordinates3 (1-d double array) : third set of coordinates
+% coordinates1 (1-d double array) : set of first components coordinates
+% coordinates2 (1-d double array) : set of second components coordinates
+% coordinates3 (1-d double array) : set of third components coordinates
 % origin (3 1-d double array) : origin's geodetic coordinates
 
 % Output :
