@@ -1,3 +1,12 @@
+
+% function save_labels(preDatasetFolder, datasetName)
+
+% Saves the labels used to produce a dataset.
+
+% Input :
+% preDatasetFolder (string) : pre-dataset folder path
+% datasetName (string) : dataset name
+
 function save_labels(preDatasetFolder, datasetName)
 
 disp(newline + "Saving labels...")
