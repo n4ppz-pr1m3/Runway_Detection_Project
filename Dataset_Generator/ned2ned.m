@@ -1,4 +1,5 @@
-function M = ned2ned(newOrigin, oldOrigin)
+
+% function M = ned2ned(newOrigin, oldOrigin)
 
 % Compute the transformation matrix between two NED reference frames
 
@@ -19,6 +20,8 @@ function M = ned2ned(newOrigin, oldOrigin)
 % lat (double) : geodetic coordinates of the NED origin
 % lon (double) :                    -
 % ht (double) :                     -
+
+function M = ned2ned(newOrigin, oldOrigin)
 
 wgs84 = wgs84Ellipsoid;
 
