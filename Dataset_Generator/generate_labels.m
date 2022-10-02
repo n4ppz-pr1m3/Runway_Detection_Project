@@ -1,8 +1,22 @@
-function labels_data = generate_labels(airports_data, poses_data, calibrationData, pad_value)
+% function labels_data = generate_labels(airports_data, poses_data, calibration_data, pad_value)
+
+% Computes labels (borders, bounding boxes and segmentation masks) from
+% poses data and calibration settings.
+
+% Input :
+% airports_data (airports data struct) : airports data
+% poses_data (poses data struct) : poses data
+% calibration_data (calibration data struct) : calibration settings
+% pad_value (integer) : padding value for files indexing
+
+% Output :
+% labels_data (labels data struct) : labels data
+
+function labels_data = generate_labels(airports_data, poses_data, calibration_data, pad_value)
 
 airports = string(fieldnames(airports_data));
-intrinsicMatrix = calibrationData.intrinsicMatrix;
-imageSize = calibrationData.imageSize;
+intrinsicMatrix = calibration_data.intrinsicMatrix;
+imageSize = calibration_data.imageSize;
 wgs84 = wgs84Ellipsoid;
 labels_data = [];
 for i=1:numel(airports)
@@ -72,7 +86,6 @@ for i=1:numel(airports)
         end
         % Update labels data
         label_name = format_indexed_name("LBL", offset + j, pad_value);
-        %labels_data.(label_name) =  {runways_corners, runways_bbox, runways_masks, airport};
         labels_data.(label_name).airport = airport;
         labels_data.(label_name).corners = runways_corners;
         labels_data.(label_name).boxes = runways_bbox;
