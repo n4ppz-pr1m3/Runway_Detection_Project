@@ -1,3 +1,20 @@
+
+% function calibrationData = setup_calibration(numImages, dpi,...
+%                                              calibrationFolder,...
+%                                              baseFilename, imageFormat)
+
+% Initialize the calibration settings before performing camera calibration.
+
+% Input :
+% numImages (integer) : number of images required for the calibration
+% dpi (integer) : dpi value used when converting pdf calibration images
+% calibrationFolder (string) : calibration folder name
+% baseFilename (string) : base calibration image name
+% imageFormat (string) : target image format
+
+% Output :
+% calibrationData (calibration data struct) : calibration settings
+
 function calibrationData = setup_calibration(numImages, dpi,...
                                              calibrationFolder,...
                                              baseFilename, imageFormat)
@@ -48,7 +65,6 @@ calibrationData.intrinsicMatrix = [];
 calibrationData.fov = [];
 calibrationData.residuals = [];
 calibrationData.meanReprojectionError = [];
-
 
 save(calibrationDataPath, "calibrationData");
 
