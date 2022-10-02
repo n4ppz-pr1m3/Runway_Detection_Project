@@ -1,3 +1,15 @@
+% function [folder, names, ext] = get_names(folder)
+
+% Returns the parent folder, name and extension of each file contained in an input folder. 
+
+% Input :
+% folder (string) : folder path
+
+% Output :
+% folder (1-d string array) : parent folders
+% names (1-d string array) : file names (without extension)
+% ext (1-d string array) : file extensions
+
 function [folder, names, ext] = get_names(folder)
 
 listing = dir(folder);
