@@ -1,3 +1,20 @@
+
+% function to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
+%                     datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder, basename)
+
+% Converts a pre-dataset to Pascal VOC format.
+
+% Input :
+% full_calibration_data (N 1-d cell array of calibration data struct) : calibration data associated with each sub-dataset
+% full_labels_data (N 1-d cell array of labels data struct) : labels data associated with each sub-dataset 
+% pdfImagesFolder (string) : pdf images folder path
+% datasetName (string) : dataset name
+% datasetFolder (string) : dataset folder path
+% imagesFolder (string) : dataset images folder name
+% annotationsFolder (string) : dataset annotations folder name
+% masksFolder (string) : dataset masks folder name
+% basename (string) : base dataset filenames
+
 function to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
                     datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder, basename)
 
