@@ -1,3 +1,4 @@
+
 % function M = extrinsic_camera_matrix(cameraPose, worldPose)
 
 % Compute the extrinsic parameters matrix of the camera with rotation
