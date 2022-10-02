@@ -1,3 +1,21 @@
+
+% function calibrationData = measure_images_points(currentCalibrationData, varargin)
+
+% Interactive application to measure control point coordinates on the
+% images used to perform a calibration.
+
+% Calibration settings are updated with control point image coordinates.
+
+% By default, the coordinates from all the images are measured unless a
+% specific image index is provided.
+
+% Input :
+% currentCalibrationData (calibration data struct) : input calibration settings
+% varargin{1} := image_index (integer) : target image to get coordinates from
+
+% Output :
+% calibrationData (calibration data struct) : updated calibration settings
+
 function calibrationData = measure_images_points(currentCalibrationData, varargin)
 
 calibrationData = currentCalibrationData;
@@ -37,10 +55,6 @@ end
 calibrationData.imagesPoints = imagesPoints;
 
 save(calibrationData.file, "calibrationData");
-
-
-
-
 
 end
 
