@@ -1,4 +1,4 @@
-function [latC, lonC, htC] = geo_centroid(geoData)
+% function [latC, lonC, htC] = geo_centroid(geoData)
 
 % Compute the geodetic coordinates of a set of points's centroid.
 
@@ -9,6 +9,8 @@ function [latC, lonC, htC] = geo_centroid(geoData)
 % latC (double) : centroid latitude
 % lonC (double) : centroid longitude
 % htC (double) : centroid height
+
+function [latC, lonC, htC] = geo_centroid(geoData)
 
 % Input points cartesian coordinates
 wgs84 = wgs84Ellipsoid;
