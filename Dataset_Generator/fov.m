@@ -1,3 +1,4 @@
+
 % function [fov_hor, fov_ver] = fov(fx, fy, width, height)
 
 % Compute the field of view of a camera along the x and y directions.
