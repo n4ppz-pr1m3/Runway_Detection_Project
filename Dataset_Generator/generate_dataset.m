@@ -1,3 +1,4 @@
+
 % function generate_dataset(full_airports_data,...
 %                         full_camera_locations,...
 %                         full_calibration_data,...
@@ -8,10 +9,9 @@
 
 % Generates a dataset.
 
-% Currently, the only supported dataset format is Pascal VOC.
-
-% The dataset is produced from an heterogenous pre-dataset made of source
-% pdf images and raw labels data.
+% Initially, a pre-dataset made of source pdf images and raw labels data is
+% produced. Afterwards, the pre-dataset is converted to Pascal VOC, the only
+% currently supported format.
 
 % The heterogenous pre-dataset is assembled from a set of homogenous pre-datasets.
 % Each pre-dataset is produced with specific calibration setting meaning that all
@@ -27,8 +27,8 @@
 % images will be saved in validationFolder with labels drawn on them.
 
 % Input :
-% full_airports_data (N 1-d cell array of airports_data struct) : airports data associated with each sub-dataset
-% full_calibration_data (N 1-d cell array of calibration_data struct) : calibration data associated with each sub-dataset
+% full_airports_data (N 1-d cell array of airports data struct) : airports data associated with each sub-dataset
+% full_calibration_data (N 1-d cell array of calibration data struct) : calibration data associated with each sub-dataset
 % preDatasetFolder (string) : path to the pre-dataset folder
 % render_times (3 1-d double array) : render times
 % basename (string) : base dataset filenames
