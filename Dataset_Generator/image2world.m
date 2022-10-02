@@ -1,10 +1,10 @@
-function [worldPoints, rePoint, reImage, residuals] = image2world(imagePoints, homographies)
+% function [worldPoints, rePoint, reImage, residuals] = image2world(imagePoints, homographies)
 
 % TO DO : reprojection errors are incorrect
 
 % Compute the world coordinates of a set of points given their image
 % coordinates on multiple images. The points are assumed to be coplanar and
-% lie on the plane Z=0 of the world reference frame.
+% to lie on the plane Z=0 of the world reference frame.
 
 % Input :
 % imagePoints (P*2*N 3-d double array) : image coordinates of P points from N images
@@ -15,8 +15,9 @@ function [worldPoints, rePoint, reImage, residuals] = image2world(imagePoints, h
 % worldPoints (P*2 2-d double array) : world coordinates of the P points
 % rePoint (P 1-d double array) : mean reprojection error of each point across all images
 % reImage (N 1-d double array) : mean reprojection error of all points for each image
-% residuals (P*2*N 3-d double array) : residuals between image coordinates
-% and projected world points
+% residuals (P*2*N 3-d double array) : residuals between image coordinates and projected world points
+
+function [worldPoints, rePoint, reImage, residuals] = image2world(imagePoints, homographies)
 
 if size(imagePoints, 3) ~= size(homographies, 3)
     error("Camera matrices and images count mismatch")
