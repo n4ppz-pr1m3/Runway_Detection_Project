@@ -17,11 +17,10 @@ function draw_bounding_boxes(airport, image_path, save_path, fig, colors, runway
 
 imshow(image_path);
 hold on;
+[x_runways_bbox, y_runways_bbox] = bbox2bbox_plot(runways_bounding_boxes);
 nRunways = size(runways_bounding_boxes, 1);
 for i=1:nRunways
-    runway_bbox = runways_bounding_boxes(i, :);
-    runway_bbox_plot = bbox2bbox_plot(runway_bbox);
-    plot(runway_bbox_plot(1, :), runway_bbox_plot(2, :), "LineWidth", 2, "Color", colors(i, :));
+    plot(x_runways_bbox(i, :), y_runways_bbox(i, :), "LineWidth", 2, "Color", colors(i, :));
 end
 hold off;
 title(airport + " Bounding boxes")
