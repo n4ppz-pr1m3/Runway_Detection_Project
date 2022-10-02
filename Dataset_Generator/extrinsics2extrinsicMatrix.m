@@ -1,3 +1,4 @@
+
 % function extrinsicMatrix = extrinsics2extrinsicMatrix(extrinsics)
 
 % Converts an extrinsics vector to a matrix form.
