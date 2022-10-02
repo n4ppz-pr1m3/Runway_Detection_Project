@@ -1,9 +1,24 @@
+% function generate_images(calibration_data, pdfImagesFolder, tmpFolder, imagesFolder, basename, check_dir)
+
+% Converts source pdf images to target image format and size specified by
+% the calibration settings.
+
+% The pdf images are first being converted into a temporary folder before
+% being moved and renamed into the target folder.
+
+% Input :
+% calibration_data (calibration data struct) : calibration settings
+% pdfImagesFolder (string) : path to the source pdf images folder
+% tmpFolder (string) : path to the temporary folder
+% imagesFolder (string) : path to the destination folder
+% basename (string) : base dataset filenames
+% check_dir (boolean) : specifies if a folder needs to be created
+
 function generate_images(calibration_data, pdfImagesFolder, tmpFolder, imagesFolder, basename, check_dir)
 
 if check_dir && ~mkdir(".", imagesFolder)
     error("Unable to create " + imagesFolder);
 end
-
 
 % Images conversion
 disp(newline + "Converting images...")
