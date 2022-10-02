@@ -1,3 +1,7 @@
+
+% Shows the numerical difference when computing a change of coordinates
+% transformation on random data when using quaternions and rotation matrices.
+
 clear; clc;
 cameraPose = [1000 * randn(1, 3), 100 * randn(1, 3)]; % Random camera pose
 worldPose = [1000 * randn(1, 3), 100 * randn(1, 3)];  % Random world pose
