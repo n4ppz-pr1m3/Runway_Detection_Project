@@ -1,4 +1,8 @@
 
+% Jonathan C. Lansey (2022). Beautiful and distinguishable line colors + colormap 
+% (https://www.mathworks.com/matlabcentral/fileexchange/42673-beautiful-and-distinguishable-line-colors-colormap),
+% MATLAB Central File Exchange. Retrieved October 2, 2022. 
+
 % function lineStyles = linspecer(N)
 % This function creates an Nx3 array of N [R B G] colors
 % These can be used to plot lots of lines with distinguishable and nice
