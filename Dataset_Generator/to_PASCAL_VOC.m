@@ -35,6 +35,7 @@ tmpFolder = "tmpImages";
 if ~mkdir(".", tmpFolder)
     error("Unable to create " + tmpFolder);
 end
+
 for i=1:nSubDatasets
     calibration_data = full_calibration_data{i};
     check_dir = (i == 1);
