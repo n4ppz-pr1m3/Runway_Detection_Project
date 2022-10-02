@@ -1,7 +1,5 @@
-function [imagePoints, imageLines, imageLinesEndpoints] = mark_image(filename, n1, n2, colors, saveFolder)
 
-% TO DO : UPDATE DOC + Credit usage "moveplot" + doc helper
-% functions
+% function [imagePoints, imageLines, imageLinesEndpoints] = mark_image(filename, n1, n2, colors, saveFolder)
 
 % Manually identify (n1 x n2) points on an image laying on a grid-like
 % pattern and return their coordinates. The points coordinates are computed
@@ -17,16 +15,6 @@ function [imagePoints, imageLines, imageLinesEndpoints] = mark_image(filename, n
 % Click two times on the image to specify two points belonging to the line
 % (Optionnal) Drag either of the two previous points to adjust the line
 % Press ENTER to validate
-
-% Input :
-% filename (string) : name of the image file
-% n1 (integer) : number of lines in the first set
-% n2 (integer) : number of lines in the second set
-% colors (6 1-d string array) : lines'colors
-% saveFolder (string) : name of the save folder
-
-% Output :
-% imagePoints ((n1*n2)*2 2-d array double) : 2d coordinates of the marked points
 
 % Colors:
 % colors(1) : first set's regular line color
@@ -60,7 +48,22 @@ function [imagePoints, imageLines, imageLinesEndpoints] = mark_image(filename, n
 % (n2)  - 3 - 6 - 9 -12 -
 %         |   |   |   |
 
+% Each row of imageLinesEndpoints specifies a line set of endpoints in the
+% form [x1, y1, x2, y2].
 
+% Input :
+% filename (string) : name of the image file
+% n1 (integer) : number of lines in the first set
+% n2 (integer) : number of lines in the second set
+% colors (6 1-d string array) : lines'colors
+% saveFolder (string) : name of the save folder
+
+% Output :
+% imagePoints ((n1*n2)x2 2-d array double) : 2d coordinates of the marked points
+% imageLines ((n1+n2)x3 2-d double array) : lines homogenous coordinates
+% imageLinesEndpoints ((n1+n2)x4 2-d double array) : lines endpoints
+
+function [imagePoints, imageLines, imageLinesEndpoints] = mark_image(filename, n1, n2, colors, saveFolder)
 
 % Pattern's image
 fig = imshow(filename);
