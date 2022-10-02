@@ -1,3 +1,25 @@
+
+% function [p, resnorm, residual, exitflag, output] = refine_zhang_estimation(allImagePoints, worldPoints, p0)
+
+% Performs non-linear optimization to estimate all the camera parameters in
+% the context of Zhang calibration by minimizing the overall geometric distance
+% between measured image points and projected world points.
+
+% The parameters vector has size dof(intrinsics) + 6xN where N is the
+% number of images used for calibration.
+
+% Input :
+% allImagePoints (Mx2xN 3-d double array) : images coordinates of M points from N images
+% worldPoints (Mx2 2-d double array) : points world coordinates
+% p0 (3+6xN 1-d double array) : parameters vector initial guess
+
+% Output :
+% p (3+6xN 1-d double array) : estimated parameters vector
+% resnorm (double) : residual norm
+% residual (size(p) 1-d double array) : residual vector
+% exitflag (integer) : exit flag
+% output (struct) : optimization output
+
 function [p, resnorm, residual, exitflag, output] = refine_zhang_estimation(allImagePoints, worldPoints, p0)
 
 nPoints = size(allImagePoints, 1);
