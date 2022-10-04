@@ -1,4 +1,4 @@
-function M = z_extrinsic_matrix(cameraPose, worldPose, method)
+% function M = z_extrinsic_matrix(cameraPose, worldPose, method)
 
 % Compute the extrinsic parameters matrix of the camera
 
@@ -35,6 +35,8 @@ function M = z_extrinsic_matrix(cameraPose, worldPose, method)
 
 % Output :
 % M (3*4 2-d double array) : rigid body transformation matrix
+
+function M = z_extrinsic_matrix(cameraPose, worldPose, method)
 
 if ~exist("method", "var")
     method = "quat";
