@@ -1,3 +1,4 @@
+
 % function M = interior_mask(polygon, imageSize)
 
 % Computes the mask associated with the interior of a convex polygon drawn
