@@ -1,4 +1,4 @@
-function imagePoints = world2image(cameraMatrix, worldPoints)
+% function imagePoints = world2image(cameraMatrix, worldPoints)
 
 % Compute the image coordinates of world points.
 
@@ -19,6 +19,8 @@ function imagePoints = world2image(cameraMatrix, worldPoints)
 % Output :
 % imagePoints (2*n 2-d double array) : 2d image coordinates
 
+function imagePoints = world2image(cameraMatrix, worldPoints)
+
 % homogenous world coordinates
 nPoints = size(worldPoints, 2);
 homogenousWorldPoints = [worldPoints; ones(1, nPoints)];
@@ -27,10 +29,7 @@ homogenousWorldPoints = [worldPoints; ones(1, nPoints)];
 homogenousImagePoints = cameraMatrix * homogenousWorldPoints;
 
 % normalize the scale factors
-homogenousImagePoints = homogenousImagePoints ./ homogenousImagePoints(3, :);
-
-% final result
-imagePoints = homogenousImagePoints(1:2, :);
+imagePoints = homogenousImagePoints(1:2, :) ./ homogenousImagePoints(3, :);
 
 end
 
