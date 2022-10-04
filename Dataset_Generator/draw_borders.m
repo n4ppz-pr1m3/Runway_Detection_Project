@@ -1,3 +1,4 @@
+
 % function draw_borders(airport, image_path, save_path, fig, colors, runways_corners)
 
 % Draws the runways borders on an airport image.
