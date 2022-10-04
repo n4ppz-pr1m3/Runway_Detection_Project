@@ -1,5 +1,5 @@
 
-% function [labels_data, poses_data, dataset_size] = generate_homogenous_predataset(airports_data,...
+% function [labels_data, poses_data, dataset_size] = generate_homogenous_predataset(runways_data,...
 %                                                     coord_type, param1, param2, param3,...
 %                                                     calibration_data,...
 %                                                     preDatasetFolder,...
@@ -26,7 +26,7 @@
 % of each file/key is offset + 1.
 
 % Input :
-% airports_data (airports_data struct) : airports data
+% runways_data (runways_data struct) : runways data
 % coord_type (string) : coordinates system used for specifying cameras locations ('spherical'|'cylindrical')
 % param1 (1-d double array) : set of first components cameras coordinates
 % param2 (1-d double array) : set of second components cameras coordinates
@@ -43,7 +43,7 @@
 % poses_data (poses_data struct) : poses data
 % dataset_size (integer) : dataset size
 
-function [labels_data, poses_data, dataset_size] = generate_homogenous_predataset(airports_data,...
+function [labels_data, poses_data, dataset_size] = generate_homogenous_predataset(runways_data,...
                                                     coord_type, param1, param2, param3,...
                                                     calibration_data,...
                                                     preDatasetFolder,...
@@ -59,14 +59,14 @@ end
 
 % Generates poses
 disp("Generating poses...")
-[poses_data, dataset_size] = generate_poses(airports_data, coord_type, param1, param2, param3, offset);
+[poses_data, dataset_size] = generate_poses(runways_data, coord_type, param1, param2, param3, offset);
 % range = string(offset+1) + "_" + string(offset+dataset_size);
 % save(fullfile(preDatasetFolder, "poses_data_" + range +".mat"), "poses_data"); % Debug
 disp("... done")
 
 % Generates labels
 disp("Generating labels...")
-labels_data = generate_labels(airports_data, poses_data, calibration_data, pad_value);
+labels_data = generate_labels(runways_data, poses_data, calibration_data, pad_value);
 %save(fullfile(preDatasetFolder, "labels_data_" + range + ".mat"), "labels_data"); % Debug
 disp("... done")
 
