@@ -1,3 +1,4 @@
+
 % function mask = composite_mask(masks)
 
 % Computes a matrix with the same filling pattern as a logical OR of a set
