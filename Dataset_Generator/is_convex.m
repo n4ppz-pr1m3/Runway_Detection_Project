@@ -1,3 +1,4 @@
+
 % function [bool, verticesOrdering] = is_convex(polygon)
 
 % Checks if a polygon is convex and non self-intersecting
