@@ -1,4 +1,4 @@
-function [Q, T] = z_extrinsic_camera_quaternion(cameraPose, worldPose)
+% function [Q, T] = z_extrinsic_camera_quaternion(cameraPose, worldPose)
 
 % Compute the extrinsic parameters matrix of the camera with quaternions
 
@@ -34,6 +34,8 @@ function [Q, T] = z_extrinsic_camera_quaternion(cameraPose, worldPose)
 % heading : orientation of the object
 % pitch :               -
 % roll :                -
+
+function [Q, T] = z_extrinsic_camera_quaternion(cameraPose, worldPose)
 
 % Rotation component
 % rotation from world's NED to world frame
