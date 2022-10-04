@@ -1,3 +1,4 @@
+
 % function imagePointsHat = image2image(homography, imagePoints)
 
 % Computes the image coordinates of a set of points of an input image under an homography.
