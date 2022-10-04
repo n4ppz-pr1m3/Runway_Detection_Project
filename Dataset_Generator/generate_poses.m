@@ -1,3 +1,4 @@
+
 % function [poses_data, poses_count] = generate_poses(airports_data, coord_type, param1, param2, param3, offset)
 
 % Generates poses data from camera coordinates.
