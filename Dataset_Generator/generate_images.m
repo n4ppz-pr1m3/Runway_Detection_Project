@@ -1,3 +1,4 @@
+
 % function generate_images(calibration_data, pdfImagesFolder, tmpFolder, imagesFolder, basename, check_dir)
 
 % Converts source pdf images to target image format and size specified by
