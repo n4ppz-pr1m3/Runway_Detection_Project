@@ -1,3 +1,4 @@
+
 % function [x_bbox, y_bbox] = bbox2bbox_plot(bbox)
 
 % Computes the xy-coordinates of a set of bounding boxes required for drawing
