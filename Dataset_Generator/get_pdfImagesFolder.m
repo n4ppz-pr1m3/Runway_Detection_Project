@@ -1,3 +1,4 @@
+
 % function pdfImagesFolder = get_pdfImagesFolder(preDatasetFolder)
 
 % Returns the path to the pdf images folder of a pre-dataset.
