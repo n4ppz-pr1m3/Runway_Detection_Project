@@ -1,3 +1,4 @@
+
 % function draw_segmentation_masks(airport, image_path, save_path, fig, colors, runways_segmentation_masks)
 
 % Applies segmentation masks on an airport image.
