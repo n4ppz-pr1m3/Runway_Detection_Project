@@ -1,3 +1,4 @@
+
 % function area = convex_polygon_area(polygon)
 
 % Computes the area of a convex polygon
