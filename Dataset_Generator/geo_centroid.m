@@ -1,3 +1,4 @@
+
 % function [latC, lonC, htC] = geo_centroid(geoData)
 
 % Compute the geodetic coordinates of a set of points's centroid.
