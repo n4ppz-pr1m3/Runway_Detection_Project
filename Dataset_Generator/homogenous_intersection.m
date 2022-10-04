@@ -1,3 +1,4 @@
+
 % function point = homogenous_intersection(line1, line2)
 
 % Compute the homogenous intersection of two lines.
