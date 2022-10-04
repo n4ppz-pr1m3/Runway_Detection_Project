@@ -1,3 +1,26 @@
+
+% function full_labels_data = update_heterogenous_predataset_labels(full_airports_data,...
+%                                                                     new_full_calibrationData,...
+%                                                                     preDatasetFolder,...
+%                                                                     pad_value)
+
+% Updates a pre-dataset with new calibration settings.
+
+% It is assumed that the exisisting pre-dataset has been created with
+% identical airports data and padding value. Hence, only labels need to be
+% recomputed.
+
+% The existing label data is overwritten.
+
+% Input :
+% full_airports_data (1-d cell array of airport data struct) : airports data
+% new_full_calibrationData (1-d cell array of calibration data struct) : updated calibration settings
+% preDatasetFolder (string) : pre-dataset folder path
+% pad_value (integer) : padding value
+
+% Output :
+% full_labels_data (1-d cell array of labels data struct) : updated labels data
+
 function full_labels_data = update_heterogenous_predataset_labels(full_airports_data,...
                                                                     new_full_calibrationData,...
                                                                     preDatasetFolder,...
