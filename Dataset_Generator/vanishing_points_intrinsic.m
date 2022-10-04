@@ -1,12 +1,25 @@
-clc; clear; close all;
 
-dataLTP = load_dataLTP;
+% function K = vanishing_points_intrinsic
 
-% LTP
-ltp = dataLTP(1, :);
-latLTP = string2angle(ltp(2));
-lonLTP = string2angle(ltp(3));
-htLTP = double(ltp(4));
+% Computes the intrinsic matrix from 3 mutually orthogonal vanishing
+% points.
+
+% Example :
+% NYC
+% lat = 40.7;
+% lon = -74;
+% ht = 1500;
+
+% Input :
+% Initial world location gps coordinates
+% lat (double) : latitude
+% lon (double) : longitude
+% ht (double) : height
+
+% Output :
+% K (3x3 2-d double array) : intrinsic matrix
+
+function K = vanishing_points_intrinsic(lat, lon, ht)
 
 % Plot
 fig = uifigure;
@@ -16,7 +29,7 @@ g = geoglobe(fig);
 % Initial camera
 wgs84 = wgs84Ellipsoid;
 [latCam, lonCam, htCam] = aer2geodetic(0, 90, 500, ...
-    latLTP, lonLTP, htLTP, wgs84);
+    lat, lon, ht, wgs84);
 campos(g, latCam, lonCam, htCam);
 campitch(g, -90);
 
@@ -38,12 +51,12 @@ else
     disp('Conversion done')
 end
 close(fig)
-%%
-clc;
+
 colors = ["red", "green", "blue"];
 vanishingPoints = zeros(3, 3);
 imshow("tmp.png")
 hold on;
+disp("Draw 3 sets of mutually orthogonal world lines")
 for i=1:3
     disp("Draw 2 parallel world lines")
     [line1, x1, y1] = drawline;
@@ -60,8 +73,6 @@ xlim("auto")
 ylim("auto")
 hold off;
 
-%%
-clc
 A = zeros(3, 4);
 for i=0:2
     iCur = mod(i, 3) + 1;
@@ -78,7 +89,7 @@ for i=0:2
 end
 
 % IAC estimate
-[U, S, V] = svd(A);
+[~, ~, V] = svd(A);
 p = V(:, end);
 omega = [p(1), 0, p(2);...
          0, p(1), p(3);...
@@ -88,5 +99,7 @@ if flag
     disp("Unsuccesful factorization")
 else
     disp("Successful vanishing points intrinsic estimation")
-    K = inv(R)
+    K = inv(R);
+end
+
 end
