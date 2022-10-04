@@ -1,4 +1,4 @@
-function visualize_frames(cameraPose, worldPose, length)
+% function visualize_frames(cameraPose, worldPose, length)
 
 % Visualize the world and camera reference frames.
 
@@ -31,6 +31,8 @@ function visualize_frames(cameraPose, worldPose, length)
 % heading (double) : object orientation
 % pitch (double) :           -
 % roll (double) :  
+
+function visualize_frames(cameraPose, worldPose, length)
 
 % World parameters
 latWorld = worldPose(1);
