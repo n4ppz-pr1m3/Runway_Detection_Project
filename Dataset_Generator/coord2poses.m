@@ -1,3 +1,4 @@
+
 % function poses = coord2poses(...
 %     coordinatesType, coordinates1, coordinates2, coordinates3, origin)
 
