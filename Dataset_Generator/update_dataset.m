@@ -62,9 +62,9 @@ to_PASCAL_VOC(updated_full_calibration_data, updated_full_labels_data, pdfImages
 disp(newline + "Conversion done." + newline + "New dataset successfully created at " + fullfile(newDatasetFolder));
 toc
 
-% Validate labels
+% Validates dataset
 tic
-validate_labels(newValidationFolder, validation_ratio,...
-    updated_full_labels_data, updated_full_calibration_data, fullfile(newDatasetFolder, newImagesFolder));
+validate_dataset(newValidationFolder, validation_ratio,...
+    updated_full_labels_data, fullfile(newDatasetFolder, newImagesFolder));
 toc
 end
