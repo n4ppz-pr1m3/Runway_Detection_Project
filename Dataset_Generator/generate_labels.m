@@ -1,3 +1,4 @@
+
 % function labels_data = generate_labels(airports_data, poses_data, calibration_data, pad_value)
 
 % Computes labels (borders, bounding boxes and segmentation masks) from
