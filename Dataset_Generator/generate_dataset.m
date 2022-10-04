@@ -7,7 +7,7 @@
 %                         datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder,...
 %                         validationFolder, validation_ratio)
 
-% Generates a dataset.
+% Creates a new dataset from scratch.
 
 % Initially, a pre-dataset made of source pdf images and raw labels data is
 % produced. Afterwards, the pre-dataset is converted to Pascal VOC, the only
@@ -75,10 +75,10 @@ to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
 disp(newline + "Conversion done." + newline + "Dataset successfully created at " + fullfile(datasetFolder));
 toc
 
-% Validate labels
+% Validates dataset
 tic
-validate_labels(validationFolder, validation_ratio,...
-    full_labels_data, full_calibration_data, fullfile(datasetFolder, imagesFolder));
+validate_dataset(validationFolder, validation_ratio,...
+    full_labels_data, fullfile(datasetFolder, imagesFolder));
 toc
 end
 
