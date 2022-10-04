@@ -1,3 +1,4 @@
+
 % function extrinsics = homographies2extrinsics(homographies, intrinsicMatrix)
 
 % Computes extrinsics vectors from a set of homographies and an intrinsic matrix.
