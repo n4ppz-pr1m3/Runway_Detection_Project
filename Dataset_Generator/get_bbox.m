@@ -1,3 +1,4 @@
+
 % function [bbox_plot, bbox_corners, bbox_center_size] = get_bbox(points)
 
 % Compute the bounding box coordinates of a set of 2d points
