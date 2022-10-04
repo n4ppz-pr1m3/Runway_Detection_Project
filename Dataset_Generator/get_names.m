@@ -1,3 +1,4 @@
+
 % function [folder, names, ext] = get_names(folder)
 
 % Returns the parent folder, name and extension of each file contained in an input folder. 
