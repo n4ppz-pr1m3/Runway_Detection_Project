@@ -1,3 +1,4 @@
+
 % function line = homogenous_line(point1, point2)
 
 % Compute the homogenous coordinates of the line joining two points in 2d.
