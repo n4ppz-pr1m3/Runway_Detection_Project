@@ -1,3 +1,4 @@
+
 % function calibrationData = convert_pdf_calibration_images(currentCalibrationData)
 
 % Converts pdf calibration images to target image size and format specified
