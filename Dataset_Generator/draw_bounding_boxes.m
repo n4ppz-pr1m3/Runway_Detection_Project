@@ -1,3 +1,4 @@
+
 % function draw_bounding_boxes(airport, image_path, save_path, fig, colors, runways_bounding_boxes)
 
 % Draws the runways bounding boxes on an airport image.
