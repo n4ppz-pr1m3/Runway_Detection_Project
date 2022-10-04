@@ -1,3 +1,4 @@
+
 % function bool = angleLessThan180(v1, v2, orientation)
 
 % Check if the angle between 2 vectors measured according to the specified
