@@ -177,8 +177,8 @@ else
 end
 
 
-runways = localData{2};
-names = localData{3};
+runways = localData.runways;
+names = localData.names;
 nRunways = size(runways, 1);
 
 if isempty(airport)
