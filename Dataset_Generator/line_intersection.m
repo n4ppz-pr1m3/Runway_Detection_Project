@@ -1,3 +1,4 @@
+
 % function [x, y] = line_intersection(line1, line2)
 
 % Compute the cartesian intersection of two lines.
