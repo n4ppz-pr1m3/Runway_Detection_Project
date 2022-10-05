@@ -1,7 +1,5 @@
 
-% TO DO : Check bearings / get single LTP
-
-% function runways_data = get_runways_data(raw_airports_data)
+% function runways_data = get_runways_data(raw_airports_data, filter_list)
 
 % Extracts runways data.
 
@@ -14,13 +12,18 @@
 % - HeightLTP (numerical)
 % - LatitudeFPAP (string)
 % - LongitudeFPAP (string)
-% - Length (numerical)
-% - Width (numerical)
+% - Length (numerical - International Feet)
+% - Width (numerical - International Feet)
 % - Elevation (numerical)
 % - MagBearing (numerical)
 
+% Runway lengths from a given airport should be unique.
+
 % Latitudes and longitudes should be given in the form : cardinal direction + d.m.s. angle
 % Example : "N12-34-56.78"
+
+% If filter_list is provided, runways data will be extracted exclusively
+% from airports on that list.
 
 % runways_data is a runways data struct. For each airport APT :
 % runways_data.APT.origin := (3-vector) airport origin for cameras views
@@ -31,11 +34,12 @@
 
 % Input :
 % raw_airports_data (tabular airports data) : airports data
+% [Optional] filter_list (1-d string array) : airports filtering list
 
 % Output :
 % runways_data (runways data struct) : runways data
 
-function runways_data = get_runways_data(raw_airports_data)
+function runways_data = get_runways_data(raw_airports_data, filter_list)
 
 table = readtable(raw_airports_data, 'sheet', 1);
 
@@ -43,6 +47,9 @@ strData = string(table{:, ["Airport", "Runway", "LatitudeLTP", "LongitudeLTP", "
 numData = [double(string(table{:, "HeightLTP"})), table{:, ["Length", "Width", "Elevation"]}, double(string(table{:, "MagBearing"}))];
 
 airports = unique(strData(:, 1));
+if exist("filter_list", "var")
+    airports = sort(intersect(airports, filter_list));
+end
 disp(string(numel(airports)) + " airports found.")
 
 runways_data = [];
@@ -61,7 +68,7 @@ for i=1:numel(airports)
         n = numel(idxL);
         switch n
             % Not ideal
-            case 1      
+            case 1
                 nRunways = nRunways + 1;
                 iLTP = indices(idxL(1));
                 warning("Single LTP for " + strData(iLTP, 1) + "-" + strData(iLTP, 2))
