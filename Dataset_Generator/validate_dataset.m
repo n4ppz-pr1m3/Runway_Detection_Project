@@ -1,7 +1,6 @@
 
 % function validate_dataset(validationFolder, validation_ratio, ...
-%                         full_labels_data, full_calibration_data,...
-%                         imagesFolder)
+%                                 full_labels_data, imagesFolder)
 
 % Validates a dataset by sampling a random set of images and drawing labels
 % on them.
@@ -16,7 +15,7 @@
 % imagesFolder (string) : dataset images path
 
 function validate_dataset(validationFolder, validation_ratio, ...
-                        full_labels_data, imagesFolder)
+                                full_labels_data, imagesFolder)
 
 % Validate labels
 if validation_ratio
@@ -46,21 +45,22 @@ if validation_ratio
             ext = extensions{image_index};
             image_path = fullfile(imagesFolder, strcat(image_name, ext));
             airport = labels_data.(label_name).airport;
-    
+            image_id = image_name + " [" + airport + "]";
+
             % Draw borders
             save_path = fullfile(validationFolder, "val_img_borders_" + string(index) + ext);
             runways_corners = labels_data.(label_name).corners;
-            draw_borders(airport, image_path, save_path, fig, colors, runways_corners)
+            draw_borders(image_id, image_path, save_path, fig, colors, runways_corners)
     
             % Draw bounding boxes
             runways_bounding_boxes = labels_data.(label_name).boxes;
             save_path = fullfile(validationFolder, "val_img_bbox_" + string(index) + ext);
-            draw_bounding_boxes(airport, image_path, save_path, fig, colors, runways_bounding_boxes)
+            draw_bounding_boxes(image_id, image_path, save_path, fig, colors, runways_bounding_boxes)
     
             % Draw segmentation masks
             runways_segmentation_masks = labels_data.(label_name).masks;
             save_path = fullfile(validationFolder, "val_img_seg_masks_" + string(index) + ext);
-            draw_segmentation_masks(airport, image_path, save_path, fig, colors, runways_segmentation_masks)
+            draw_segmentation_masks(image_id, image_path, save_path, fig, colors, runways_segmentation_masks)
     
             index = index + 1;
         end
