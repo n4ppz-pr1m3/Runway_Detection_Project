@@ -1,9 +1,9 @@
 
-% function detect_runway_v2(runwayData, intrinsicMatrix, mode)
+% function detect_runway_v2(runways_data, intrinsicMatrix, mode)
 
 % TO DO : UPDATE DOC
 
-function detect_runway(runwayData, calibrationData, mode)
+function detect_runway(runways_data, calibration_data, mode)
 
 if ~exist("mode", "var")
     mode = "manual";
@@ -32,7 +32,7 @@ fig2.Visible = "off";
 fig.DeleteFcn = @(src, event) close(fig2);
 fig2.DeleteFcn = @(src, event) close(fig);
 
-airports = sort(string(fieldnames(runwayData)));
+airports = sort(string(fieldnames(runways_data)));
 
 if mode == "manual"
 
@@ -46,9 +46,9 @@ if mode == "manual"
         "Items", airports, ...
         "Value", airport, ...
         "Position", [225, 225, 70, 25], ...
-        "CreateFcn", @(airportBtn, event) update(g, runwayData.(airportBtn.Value), ...
+        "CreateFcn", @(airportBtn, event) update(g, runways_data.(airportBtn.Value), ...
         string(airportBtn.Value)), ...
-        "ValueChangedFcn", @(airportBtn, event) update(g, runwayData.(airportBtn.Value), ...
+        "ValueChangedFcn", @(airportBtn, event) update(g, runways_data.(airportBtn.Value), ...
         string(airportBtn.Value)));
 
     % Label button
@@ -61,7 +61,7 @@ if mode == "manual"
         "Text", "Render", ...
         "Position", [405, 225, 60, 25], ...
         "ButtonPushedFcn", @(renderBtn, event) render(fig, fig2, g, ...
-        runwayData.(airportBtn.Value), calibrationData, ...
+        runways_data.(airportBtn.Value), calibration_data, ...
         string(airportBtn.Value), [airportBtn, labelBtn, renderBtn]));
     
     disp("Select an airport with the dropdown button then press " + renderBtn.Text);
@@ -70,8 +70,8 @@ elseif mode == "auto"
     if mkdir(".", "Gallery")
         for i=1:numel(airports)
             airport = airports(i);
-            update(g, runwayData.(airport), airport);
-            render(fig, fig2, g, runwayData.(airport), calibrationData, airport, []);
+            update(g, runways_data.(airport), airport);
+            render(fig, fig2, g, runways_data.(airport), calibration_data, airport, []);
         end
         close(fig);
     else
@@ -97,7 +97,7 @@ end
 
 if airport ~= newAirport
     airport = newAirport;
-    airportRef = localData{1};
+    airportRef = localData.origin;
     lat0 = airportRef(1); lon0 = airportRef(2); ht0 = airportRef(3);
     wgs84 = wgs84Ellipsoid;
     [latCam, lonCam, htCam] = aer2geodetic(0, 90, 10000, lat0, lon0, ht0, wgs84);
@@ -109,7 +109,7 @@ end
 
 end
 
-function render(fig, fig2, g, localData, calibrationData, newAirport, uiButtons)
+function render(fig, fig2, g, localData, calibration_data, newAirport, uiButtons)
 
 % Renders labelled image
 
@@ -120,9 +120,9 @@ persistent dLTP
 %nVarargin = nargin + nargin("render") + 1;
 
 % Image generation
-dpi = calibrationData.dpi;
-cropValue = calibrationData.cropValue;
-ext = calibrationData.imageFormat;
+dpi = calibration_data.dpi;
+cropValue = calibration_data.cropValue;
+ext = calibration_data.imageFormat;
 tmp_img = "tmp." + ext;
 cmd = "convert -density " + dpi + " -depth 8 -quality 100 -gravity South -chop 0x" + cropValue + " tmp.pdf " + tmp_img;
 
@@ -226,7 +226,7 @@ allLTP1 = zeros(2, nRunways);
 allLTP2 = zeros(2, nRunways);
 
 % Intrinsic matrix
-intrinsicMatrix = calibrationData.intrinsicMatrix;
+intrinsicMatrix = calibration_data.intrinsicMatrix;
 
 for i=1:nRunways
     % Camera matrix
