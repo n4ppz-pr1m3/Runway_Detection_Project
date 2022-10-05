@@ -2,7 +2,7 @@
 % function to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
 %                     datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder, basename)
 
-% Converts a pre-dataset to Pascal VOC format.
+% Converts a pre-dataset to Pascal Visual Object Classes (VOC) format.
 
 % Input :
 % full_calibration_data (N 1-d cell array of calibration data struct) : calibration data associated with each sub-dataset
