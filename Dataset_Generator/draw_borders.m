@@ -1,17 +1,17 @@
 
-% function draw_borders(airport, image_path, save_path, fig, colors, runways_corners)
+% function draw_borders(image_id, image_path, save_path, fig, colors, runways_corners)
 
 % Draws the runways borders on an airport image.
 
 % Input :
-% airport (string) : airport name
+% image_id (string) : image identifier
 % image_path (string) : path to the image file
 % save_path (string) : save path of the edited image
 % fig (figure handle) : figure object used to display the image
 % colors (Nx3 2-d double array) : set of RGB colors
 % runways_corners (2x4xN 2-d double array) : image coordinates of the 4 corners of the airport's runways
 
-function draw_borders(airport, image_path, save_path, fig, colors, runways_corners)
+function draw_borders(image_id, image_path, save_path, fig, colors, runways_corners)
 
 imshow(image_path);
 hold on;
@@ -23,7 +23,7 @@ for i=1:nRunways
         "LineWidth", 1, "Color", colors(i, :));
 end
 hold off;
-title(airport + " Borders")
+title(image_id + " Borders", 'Interpreter', 'none');
 saveas(fig, save_path);
 
 end
