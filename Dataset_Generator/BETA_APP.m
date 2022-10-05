@@ -1,11 +1,11 @@
 %% Intrinsic estimation
 clc; clear; close all;
 
-load("calibrationData.mat")
+load("calibration_data.mat")
 
-load("runwayData.mat");
+load("runways_data.mat");
 
-detect_runway(runwayData, calibrationData, 'manual')
+detect_runway(runways_data, calibration_data, 'manual')
 
 %% Zhang estimation
 clc; clear; close all;
