@@ -27,7 +27,7 @@ end
 pdfImages = fullfile(calibrationFolder, "Original_PDF_Calibration_Images");
 imagesFolder = fullfile(calibrationFolder, "Calibration_Images");
 reprojectionsFolder = fullfile(calibrationFolder, "Reprojections_Images");
-calibrationDataPath = fullfile(calibrationFolder, "calibrationData.mat");
+calibrationDataPath = fullfile(calibrationFolder, "calibration_data.mat");
 
 if ~mkdir(".", calibrationFolder)
     error("Unable to create " + calibrationFolder);
