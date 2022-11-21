@@ -25,6 +25,7 @@ for i=1:nRunways
 end
 hold off;
 title(image_id + " Bounding boxes", "Interpreter", "none");
+drawnow;
 saveas(fig, save_path);
 
 end
