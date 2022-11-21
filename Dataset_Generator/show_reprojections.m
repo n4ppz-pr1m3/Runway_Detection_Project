@@ -53,6 +53,7 @@ for i=1:numImages
     saveas(fig, reproj_filename);
 end
 %close(fig)
+close all;
 disp("Done")
 
 end
