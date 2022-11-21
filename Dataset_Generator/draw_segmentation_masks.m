@@ -31,6 +31,7 @@ for i=1:nRunways
 end
 imshow(image);
 title(image_id + " Segmentation", "Interpreter", "none");
+drawnow;
 saveas(fig, save_path);
 
 end
