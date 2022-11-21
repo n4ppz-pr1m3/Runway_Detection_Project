@@ -24,6 +24,7 @@ for i=1:nRunways
 end
 hold off;
 title(image_id + " Borders", 'Interpreter', 'none');
+drawnow;
 saveas(fig, save_path);
 
 end
