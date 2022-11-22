@@ -1,5 +1,5 @@
 
-% function calibrationData = generate_pdf_calibration_images(currentCalibrationData)
+% function calibration_data = generate_pdf_calibration_images(currentCalibrationData)
 
 % Interactive application to generate pdf calibration images.
 
@@ -10,13 +10,13 @@
 % currentCalibrationData (calibration data struct) : input calibration settings
 
 % Output :
-% calibrationData (calibration data struct) : updated calibration settings
+% calibration_data (calibration data struct) : updated calibration settings
 
-function calibrationData = generate_pdf_calibration_images(currentCalibrationData)
+function calibration_data = generate_pdf_calibration_images(currentCalibrationData)
 
 disp("Generating pdf calibration images and calibration points camera coordinates")
 
-calibrationData = currentCalibrationData;
+calibration_data = currentCalibrationData;
 
 dataLTP = load_dataLTP;
 
@@ -65,8 +65,8 @@ campos(g, latCam, lonCam, htCam);
 campitch(g, -90);
 
 % Images and calibration point camera coordinates generation --------------
-numImages = calibrationData.numImages;
-baseFilename = calibrationData.baseFilename;
+numImages = calibration_data.numImages;
+baseFilename = calibration_data.baseFilename;
 cameraPoints = zeros(numImages, 3);
 disp("Generating " + string(numImages) + " images.")
 for i=1:numImages
@@ -84,14 +84,14 @@ for i=1:numImages
     cameraPoints(i, :) = (worldTransform * [worldPoint; 1])';
  
     % Saves image
-    pdfImages = calibrationData.pdfImagesFolder;
+    pdfImages = calibration_data.pdfImagesFolder;
     filename = fullfile(pdfImages, baseFilename + "_" + string(i) + ".pdf");
     exportapp(fig, filename);
 end
 close(fig)
 
-calibrationData.cameraPoints = cameraPoints;
-save(calibrationData.file, "calibrationData");
+calibration_data.cameraPoints = cameraPoints;
+save(calibration_data.file, "calibration_data");
 
 end
 
