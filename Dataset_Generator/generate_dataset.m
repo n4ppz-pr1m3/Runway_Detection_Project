@@ -69,8 +69,8 @@ disp(newline + "Converting pre-dataset to PASCAL VOC...");
 save_labels(preDatasetFolder, datasetName);
 
 % Conversion
-pdfImagesFolder = get_pdfImagesFolder(preDatasetFolder);
-to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
+basePdfImagesFolder = get_pdfImagesFolder(preDatasetFolder);
+to_PASCAL_VOC(full_calibration_data, full_labels_data, basePdfImagesFolder,...
                 datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder, basename)
 disp(newline + "Conversion done." + newline + "Dataset successfully created at " + fullfile(datasetFolder));
 toc
