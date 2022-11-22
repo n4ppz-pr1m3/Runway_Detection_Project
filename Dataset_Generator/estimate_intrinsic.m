@@ -1,5 +1,5 @@
 
-% function calibrationData = estimate_intrinsic(currentCalibrationData)
+% function calibration_data = estimate_intrinsic(currentCalibrationData)
 
 % Computes the intrinsic parameters of a camera with the provided calibration data
 
@@ -13,32 +13,32 @@
 % currentCalibrationData (calibration struct) : calibration data
 
 % Output :
-% calibrationData (calibration struct) : updated calibration data
+% calibration_data (calibration struct) : updated calibration data
 
-function calibrationData = estimate_intrinsic(currentCalibrationData)
+function calibration_data = estimate_intrinsic(currentCalibrationData)
 
 disp("Estimating intrinsic parameters")
 
-calibrationData = currentCalibrationData;
+calibration_data = currentCalibrationData;
 
-imagesPoints = calibrationData.imagesPoints;
-cameraPoints = calibrationData.cameraPoints;
+imagesPoints = calibration_data.imagesPoints;
+cameraPoints = calibration_data.cameraPoints;
 
 [intrinsicMatrix0, aspectRatio, skew, mre0, lmx, lmy] = robust_linreg_estimate(imagesPoints, cameraPoints);
 [intrinsicMatrix, residuals, mre] = least_squares_estimate(imagesPoints, cameraPoints, aspectRatio, skew);
 
 
-calibrationData.intrinsicMatrix = intrinsicMatrix;
-calibrationData.residuals = residuals;
-calibrationData.meanReprojectionError = mre;
+calibration_data.intrinsicMatrix = intrinsicMatrix;
+calibration_data.residuals = residuals;
+calibration_data.meanReprojectionError = mre;
 
-imageSize = calibrationData.imageSize;
+imageSize = calibration_data.imageSize;
 fx = intrinsicMatrix(1, 1);
 fy = intrinsicMatrix(2, 2);
 [fov_hor, fov_ver] = fov(fx, fy, imageSize(2), imageSize(1));
-calibrationData.fov = [fov_hor, fov_ver];
+calibration_data.fov = [fov_hor, fov_ver];
 
-save(calibrationData.file, "calibrationData");
+save(calibration_data.file, "calibration_data");
 disp("Estimation done" + newline)
 
 end
