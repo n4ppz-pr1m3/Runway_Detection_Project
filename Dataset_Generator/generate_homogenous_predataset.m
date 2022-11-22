@@ -33,6 +33,7 @@
 % param3 (1-d double array) : set of third components cameras coordinates
 % calibration_data (calibration_data struct) : calibration setting
 % preDatasetFolder (string) : path to the pre-dataset folder
+% pdfImagesFolderName (string) : pdf images folder name
 % render_times (3 1-d double array) : render times
 % pad_value (integer) : padding value for files indexing
 % offset (integer) : offset used for indexing
@@ -46,7 +47,7 @@
 function [labels_data, poses_data, dataset_size] = generate_homogenous_predataset(runways_data,...
                                                     coord_type, param1, param2, param3,...
                                                     calibration_data,...
-                                                    preDatasetFolder,...
+                                                    preDatasetFolder, pdfImagesFolderName,...
                                                     render_times, pad_value, offset, check_dir)
 
 if isempty(preDatasetFolder)
@@ -72,10 +73,8 @@ disp("... done")
 
 % Generates pdf images
 disp("Generating pdf images...")
-pdfImagesFolder = get_pdfImagesFolder(preDatasetFolder);
-if check_dir && ~mkdir(".", pdfImagesFolder)
-    error("Unable to create " + pdfImagesFolder);
-end
+pdfImagesFolder = fullfile(preDatasetFolder, pdfImagesFolderName);
+check_dir = 1; % TO FIX
 generate_pdf_images(poses_data, render_times, pdfImagesFolder, pad_value, check_dir)
 disp("... done")
 
