@@ -40,10 +40,10 @@ full_camera_locations = {coord_type, param1, param2, param3;...
 
 full_calibration_data = {calibration_data_1, calibration_data_2, calibration_data_2};
 
-preDatasetFolder = "Pre_Dataset";
+preDatasetFolder = "Pre_Dataset_Multi";
 
-datasetName = "Example_Dataset";
-datasetFolder = "Multi_Dataset";
+datasetName = "Example_Dataset_Multi";
+datasetFolder = "Dataset_Multi";
 imagesFolder = "Images";
 annotationsFolder = "Annotations";
 masksFolder = "Masks";
@@ -51,7 +51,7 @@ masksFolder = "Masks";
 render_times = [5, 2.5, 1];
 basename = "apt_image_";
 pad_value = 4;
-validationFolder = "Validation_Multi_PASCAL_VOC";
+validationFolder = "Validation_PASCAL_VOC_Multi";
 validation_ratio = 0.1;
 
 full_airports_data = {runways_data, runways_data, runways_data};
