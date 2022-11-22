@@ -39,14 +39,15 @@ for i=1:nSubDatasets
     param2 = full_camera_locations{i, 3};
     param3 = full_camera_locations{i, 4};
     calibrationData = full_calibrationData{i};
+    pdfImagesFolderName = "PDF_Images_" + string(i);
     check_dir = (i == 1);
     [full_labels_data{i}, full_poses_data{i}, sub_dataset_size] = generate_homogenous_predataset(runways_data,...
                                                             coord_type, param1, param2, param3,...
                                                             calibrationData,...
-                                                            preDatasetFolder,...
+                                                            preDatasetFolder, pdfImagesFolderName,...
                                                             render_times, pad_value, offset, check_dir);
                                                         
-    disp(string(sub_dataset_size) + " pdf images produced for sub-dataset " + string(i) + newline);
+    disp(string(sub_dataset_size) + " pdf images produced for sub-dataset " + string(i) + " in " + pdfImagesFolderName + newline);
     offset = offset + sub_dataset_size;
 end
 
