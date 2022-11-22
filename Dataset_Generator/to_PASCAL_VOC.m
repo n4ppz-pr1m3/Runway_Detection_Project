@@ -7,7 +7,7 @@
 % Input :
 % full_calibration_data (N 1-d cell array of calibration data struct) : calibration data associated with each sub-dataset
 % full_labels_data (N 1-d cell array of labels data struct) : labels data associated with each sub-dataset 
-% pdfImagesFolder (string) : pdf images folder path
+% basePdfImagesFolder (string) : pdf images folder path
 % datasetName (string) : dataset name
 % datasetFolder (string) : dataset folder path
 % imagesFolder (string) : dataset images folder name
@@ -15,7 +15,7 @@
 % masksFolder (string) : dataset masks folder name
 % basename (string) : base dataset filenames
 
-function to_PASCAL_VOC(full_calibration_data, full_labels_data, pdfImagesFolder,...
+function to_PASCAL_VOC(full_calibration_data, full_labels_data, basePdfImagesFolder,...
                     datasetName, datasetFolder, imagesFolder, annotationsFolder, masksFolder, basename)
 
 
@@ -48,20 +48,24 @@ if isempty(imagesFolder)
 end
 imagesFolder = fullfile(datasetFolder, imagesFolder);
 nSubDatasets = numel(full_calibration_data);
-tmpFolder = "tmpImages";
-if ~mkdir(".", tmpFolder)
-    error("Unable to create " + tmpFolder);
-end
 
 for i=1:nSubDatasets
+    tmpFolder = "tmpImages_" + string(i);
+    if ~mkdir(".", tmpFolder)
+        error("Unable to create " + tmpFolder);
+    end
+
     calibration_data = full_calibration_data{i};
     check_dir = (i == 1);
+    pdfImagesFolder = basePdfImagesFolder + "_" + string(i);
     generate_images(calibration_data, pdfImagesFolder, tmpFolder, imagesFolder, basename, check_dir);
+
+    [status, msg] = rmdir(tmpFolder);
+    if status
+        disp(msg);
+    end
 end
-[status, msg] = rmdir(tmpFolder);
-if status
-    disp(msg);
-end
+
 disp("Images created" + newline)
 
 % Labels generation
