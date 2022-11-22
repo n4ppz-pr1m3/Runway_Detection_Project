@@ -1,5 +1,5 @@
 
-% function calibrationData = convert_pdf_calibration_images(currentCalibrationData)
+% function calibration_data = convert_pdf_calibration_images(currentCalibrationData)
 
 % Converts pdf calibration images to target image size and format specified
 % in calibration data
@@ -8,17 +8,17 @@
 % currentCalibrationData (calibration struct) : input calibration data
 
 % Output :
-% calibrationData (calibration struct) : updated calibration data
+% calibration_data (calibration struct) : updated calibration data
 
-function calibrationData = convert_pdf_calibration_images(currentCalibrationData)
+function calibration_data = convert_pdf_calibration_images(currentCalibrationData)
 
-calibrationData = currentCalibrationData;
+calibration_data = currentCalibrationData;
 
-sourceFolder = calibrationData.pdfImagesFolder;
-destinationFolder = calibrationData.imagesFolder;
-baseFilename = calibrationData.baseFilename;
-imageFormat = calibrationData.imageFormat;
-dpi = calibrationData.dpi;
+sourceFolder = calibration_data.pdfImagesFolder;
+destinationFolder = calibration_data.imagesFolder;
+baseFilename = calibration_data.baseFilename;
+imageFormat = calibration_data.imageFormat;
+dpi = calibration_data.dpi;
 
 disp(newline + "Converting pdf calibration images to " + imageFormat)
 
@@ -39,8 +39,8 @@ if status
 else
     image = imread(tmp_img);
     cropValue = string(ceil(1e-2 * size(image, 1)));
-    calibrationData.cropValue = cropValue;
-    save(calibrationData.file, "calibrationData");
+    calibration_data.cropValue = cropValue;
+    save(calibration_data.file, "calibration_data");
     disp('Crop estimation done')
 end
 
