@@ -1,5 +1,5 @@
 
-% function calibrationData = setup_calibration(numImages, dpi,...
+% function calibration_data = setup_calibration(numImages, dpi,...
 %                                              calibrationFolder,...
 %                                              baseFilename, imageFormat)
 
@@ -13,9 +13,9 @@
 % imageFormat (string) : target image format
 
 % Output :
-% calibrationData (calibration data struct) : calibration settings
+% calibration_data(calibration_data struct) : calibration settings
 
-function calibrationData = setup_calibration(numImages, dpi,...
+function calibration_data = setup_calibration(numImages, dpi,...
                                              calibrationFolder,...
                                              baseFilename, imageFormat)
 
@@ -48,25 +48,25 @@ end
 disp(newline + "---------------------------- Starting new calibration -------------------------------------" + newline)
 
 % Calibration settings
-calibrationData = [];
-calibrationData.file = calibrationDataPath;
-calibrationData.numImages = numImages;
-calibrationData.baseFilename = baseFilename;
-calibrationData.imageFormat = imageFormat;
-calibrationData.imageSize = [];
-calibrationData.cropValue = [];
-calibrationData.dpi = string(dpi);
-calibrationData.pdfImagesFolder = pdfImages;
-calibrationData.imagesFolder = imagesFolder;
-calibrationData.reprojectionsFolder = reprojectionsFolder;
-calibrationData.cameraPoints = [];
-calibrationData.imagesPoints = [];
-calibrationData.intrinsicMatrix = [];
-calibrationData.fov = [];
-calibrationData.residuals = [];
-calibrationData.meanReprojectionError = [];
+calibration_data = [];
+calibration_data.file = calibrationDataPath;
+calibration_data.numImages = numImages;
+calibration_data.baseFilename = baseFilename;
+calibration_data.imageFormat = imageFormat;
+calibration_data.imageSize = [];
+calibration_data.cropValue = [];
+calibration_data.dpi = string(dpi);
+calibration_data.pdfImagesFolder = pdfImages;
+calibration_data.imagesFolder = imagesFolder;
+calibration_data.reprojectionsFolder = reprojectionsFolder;
+calibration_data.cameraPoints = [];
+calibration_data.imagesPoints = [];
+calibration_data.intrinsicMatrix = [];
+calibration_data.fov = [];
+calibration_data.residuals = [];
+calibration_data.meanReprojectionError = [];
 
-save(calibrationDataPath, "calibrationData");
+save(calibrationDataPath, "calibration_data");
 
 end
 
