@@ -1,5 +1,5 @@
 
-% function calibrationData = measure_images_points(currentCalibrationData, varargin)
+% function calibration_data = measure_images_points(currentCalibrationData, varargin)
 
 % Interactive application to measure control point coordinates on the
 % images used to perform a calibration.
@@ -14,16 +14,16 @@
 % varargin{1} := image_index (integer) : target image to get coordinates from
 
 % Output :
-% calibrationData (calibration data struct) : updated calibration settings
+% calibration_data (calibration data struct) : updated calibration settings
 
-function calibrationData = measure_images_points(currentCalibrationData, varargin)
+function calibration_data = measure_images_points(currentCalibrationData, varargin)
 
-calibrationData = currentCalibrationData;
+calibration_data = currentCalibrationData;
 
-imagesFolder = calibrationData.imagesFolder;
-baseFilename = calibrationData.baseFilename;
-ext = calibrationData.imageFormat;
-numImages = calibrationData.numImages;
+imagesFolder = calibration_data.imagesFolder;
+baseFilename = calibration_data.baseFilename;
+ext = calibration_data.imageFormat;
+numImages = calibration_data.numImages;
 
 if nargin == 1
     % Measure all calibration points images coordinates
@@ -41,20 +41,20 @@ if nargin == 1
 
     % Images size
     image = imread(filename);
-    calibrationData.imageSize = size(image);
+    calibration_data.imageSize = size(image);
     disp("Measurements done" + newline)
 else
     % Edit a single measurement
     image_index = varargin{1};
-    imagesPoints = calibrationData.imagesPoints;
+    imagesPoints = calibration_data.imagesPoints;
     filename = fullfile(imagesFolder, baseFilename + "_" + string(image_index) + "." + ext);
     imagesPoints(image_index, :) = mark_point(filename, 0.025);
 end
 
 % Calibration points images coordinates
-calibrationData.imagesPoints = imagesPoints;
+calibration_data.imagesPoints = imagesPoints;
 
-save(calibrationData.file, "calibrationData");
+save(calibration_data.file, "calibration_data");
 
 end
 
