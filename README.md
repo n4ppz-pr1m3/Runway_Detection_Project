@@ -3,11 +3,17 @@
  - Object detection and segmentaion with Mask R-CNN. [&#x1F517;](#runway-detection)
 
 ## Dataset Generation 
-| ![Object detection](Dataset_Generator/Media/demo_localization.png) |
-| <b>Object detection</b> |
+<figure>
+![Object detection](Dataset_Generator/Media/demo_localization.png)
+ <figcaption align = "center"><b>Object detection</b>
+ </figcaption>
+</figure>
 
-| ![Instance segmentation](Dataset_Generator/Media/demo_segmentation.png) |
-| <b>Instance segmentation</b> |
+<figure>
+![Instance segmentation](Dataset_Generator/Media/demo_segmentation.png)
+ <figcaption align = "center"><b>Instance segmentation</b>
+ </figcaption>
+</figure>
 
 ### Walkthrough 
 * Data processing *(TEMPLATE_DATA_PROCESSING)*
