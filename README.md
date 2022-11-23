@@ -9,7 +9,7 @@
 ### Walkthrough 
 * Data processing *(TEMPLATE_DATA_PROCESSING)*
 * Camera calibration *(TEMPLATE_CALIBRATION)*
-* [OPTIONNAL] Interactive labeled image generation *(TEMPLATE_APP)*
+* [Optional] Interactive labeled image generation *(TEMPLATE_APP)*
 * Dataset creation *(TEMPLATE_..._DATASET)*
 
 ## Runway Detection
