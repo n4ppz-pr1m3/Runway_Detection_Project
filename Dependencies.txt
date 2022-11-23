@@ -1,0 +1,9 @@
++ Matlab 2022a with the following licences: matlab, map_toolbox, statistics_toolbox
+
+WINDOWS
++ ImageMagick 7.1.0-45 Q16
++ GPL Ghostscript
+
+LINUX (Ubuntu LTS 20.04)
++ ImageMagick
+
