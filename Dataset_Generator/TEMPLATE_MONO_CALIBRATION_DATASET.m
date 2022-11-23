@@ -10,7 +10,7 @@ numImages = 5;
 dpi = 94;
 calibrationFolder = "Mono_Calibration";
 baseFilename = "calibration_image";
-imageFormat = "png";
+imageFormat = "jpg";
 default_calibration = false;
 
 calibration_data = intrinsic_calibration(numImages, dpi, calibrationFolder,...
@@ -37,7 +37,7 @@ masksFolder = "Masks";
 render_times = [5, 2.5, 1];
 basename = "apt_image_";
 pad_value = 4;
-validationFolder = "Validation_PASCAL_VOC_Mono";
+validationFolder = "Validation_Mono";
 validation_ratio = 0.1;
 
 full_airports_data = {runways_data};
