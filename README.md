@@ -4,9 +4,7 @@
 
 ## Dataset Generation 
 ![Object detection](Dataset_Generator/Media/demo_localization.png "Object detection")
-*Object detection*
 ![Instance segmentation](Dataset_Generator/Media/demo_segmentation.png "Instance segmentation")
-*Instance segmentation*
 
 ### Walkthrough 
 * Data processing *(TEMPLATE_DATA_PROCESSING)*
