@@ -4,10 +4,8 @@
 
 ## Dataset Generation 
 ![Object detection](Dataset_Generator/Media/demo_localization.png "Object detection")
-{:.image-caption}
 *Object detection*
 ![Instance segmentation](Dataset_Generator/Media/demo_segmentation.png "Instance segmentation")
-{:.image-caption}
 *Instance segmentation*
 
 ### Walkthrough 
