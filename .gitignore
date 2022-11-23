@@ -9,3 +9,6 @@ Dataset_Generator/DEMO_HOMOGENOUS_MINI_PRE_DATASET.m
 *.txt
 *.jpeg
 *.jpg
+
+!demo_segmentation.png
+!demo_localization.png
