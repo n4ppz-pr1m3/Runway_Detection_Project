@@ -1,6 +1,6 @@
 # Runway Detection System 
- - Synthetic dataset generation from satellite images with automatic labeling capabilities #[link](#dataset-generation)
- - Object detection and segmentaion with Mask R-CNN
+ - Synthetic dataset generation from satellite images with automatic labeling capabilities. [U+1F517](#dataset-generation)
+ - Object detection and segmentaion with Mask R-CNN. [U+1F517](#runway-detection)
 
 ## Dataset Generation 
 ![Object detection](Dataset_Generator/Media/demo_localization.png)
