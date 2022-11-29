@@ -10,7 +10,7 @@ numImages = 5;
 dpi = 94;
 calibrationFolder = "Mono_Calibration";
 baseFilename = "calibration_image";
-imageFormat = "jpg";
+imageFormat = "png";
 default_calibration = false;
 
 calibration_data = intrinsic_calibration(numImages, dpi, calibrationFolder,...
